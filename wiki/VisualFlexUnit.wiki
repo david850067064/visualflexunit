@@ -1,5 +1,27 @@
 #summary Main documentation page for Visual FlexUnit
 
+=  Visual FlexUnit (VFU) =
+
+=  Note: This is a rough draft of Visual FlexUnit's documentation. Visual FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ################################ =
+
+Visual FlexUnit is an Allurent open source project to establish a framework for the testing of components' visual appearance.  The goal is to enhance FlexUnit with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
+
+Contributors:
+- Douglas McCarroll
+- Joe Berkovitz
+- Marty Frenzel
+- Tim Walling
+
+==  Introduction ==
+
+For the present VFU should be considered an experiment in progress. While it's now reaching the point where it's a practical and useful tool, it's also like a toddler who is just taking baby steps. Simply stated, we don't have enough experience working with it to know where tweaks will be required. So, if your visual tests fail when you think they should be passing, this may simply be an indication that VFU needs to be tweaked. Please be in touch if you think that this may be the case.
+
+If any of the explanations or instructions on this page are less than clear we'd be grateful for your feedback.
+
+==  Overview ==
+
+Visual FlexUnit allows you to write "visual tests" for your Adobe Flex projects.
+
 In these tests you can:
  * Instantiate and initialize UI components
  * Place them in a series of test states by means of:
@@ -8,4 +30,204 @@ In these tests you can:
   * simulated mouse and keyboard events
  * Write "visual assertions" that compare the bitmaps of the components' appearance with saved baselines
 
-The string "\[project_name\]" represents the name of th
+Tests succeed if bitmaps and baselines are close enough to identical to be visually indistinguishable.
+
+Tests can be run either in GUI mode or through Ant.
+
+===  GUI Mode ===
+
+The GUI version of VFU can run as AIR app, in a browser, or in Flash Player.
+
+Besides reporting errors, GUI mode also allows you to:
+ * Use a visual diff viewer to see how test result images differ from baseline images
+ * View statistics on how many pixels differ, by how much, etc.
+ * In AIR mode, you can bless failed test images and thereby create new baselines. Cases where you would want to do this include:
+  * The unit test is new and you need to create an original baseline image
+  * You decide that the new test result image is acceptable and can become the new baseline
+
+===  Ant Mode ===
+
+ * Simply reports whether tests pass or fail.
+ * Can run tests in either Firefox or Flash Player.
+
+==  Why Is This Useful? ==
+
+===  Regression Testing ===
+
+By adding visual tests to your build process you can be assured that any changes to your codebase, or to the Flex/Flash framework, that effect the appearance of your components will be noticed immediately.
+
+===  Testing For Cross-Platform Rendering Differences ===
+
+While Adobe has done a great job of making Flash & Flex a write-once / deploy-anywhere platform, there may be differences in how images render:
+ * Between the Flash Player, browser plugins, and the AIR runtime
+ * Between Windows, Mac, and Linux
+ * And, of course, between the many combinations of these variables
+
+To date our limited testing has only detected a) differences that aren't visually noticeable, and b) differences in very unusual cases that you would never use in the real world. Still, it doesn't hurt to check. By running regression tests on multiple platforms you can be assured that any unseemly differences in component rendering will be brought to your attention quickly.
+
+==  Bootstrapping Test Projects and the Example Test Project ==
+
+The Visual FlexUnit download includes Ant scripts that will allow you to bootstrap a test project for a project that you've created that contains visual content. Bootstrapping includes:
+ * Creation of a folder hierarchy for your project.
+ * Creation of FlexBuilder project files, so that the project can be imported into Eclipse.
+ * Creation of framework code files including GUI App files, a CSS file, Ant files, etc.
+
+We also include a visual test project at /dev/vfu/vfuexampleTest for the included /dev/vfu/vfuexample/ project. This project includes all of the above, plus:
+ * Fully implemented test code
+ * Fully implemented Ant code that wires the test project into the build process
+
+It is our hope that you'll be able use the bootstrap process to start your test projects, and use vfuexampleTest as a reference project to see how test project details are implemented.
+
+===  Assumptions: ===
+
+We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. (Experienced programmers could probably work around some of these requirements, e.g. by compiling without FlexBuilder, but if you attempt such work-arounds you'll need a much deeper knowledge of the tech, and will be on your own - we can't offer any hand-holding for scenarios outside of the one outlined here.)
+ * You have Ant installed and are at least somewhat familiar with it.
+ * You have FlexBuilder 3.0 installed and are at least somewhat familiar with it.
+ * You are at least somewhat familiar with FlexUnit.
+
+===  Folder Layout ===
+
+The visualflexunit.zip unzips into the following layout:
+ * dev
+  * vfu
+
+ * Your folder for the project you are testing is in a sub-subfolder of /dev/. Example: /dev/subFolder/yourProject
+ * Conventions: Throughout these instructions:
+  * The string "[project_name]" represents the name of the project you are testing (e.g. "yourProject" in the example just cited).
+  * The string "[sub_folder]" represents the name of [project_name]'s parent folder  (e.g. "subFolder" in the example just cited).
+ * You will be creating a /dev/[subFolder]/[project_name]Test/ test project folder by running the Ant bootstrap process specified below. We assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
+
+Note: /dev/vfu/vfuexample contains a simple example project that you can practice this procedure upon if you wish. Simply replace the strings "[sub_folder]" and "[project_name]" in the instructions below with "vfu" and "vfuexample" respectively.
+
+Steps:
+ * If an /dev/[sub_folder]/[project_name]Test/ test project folder already exists, delete or rename it.
+ * Open a command prompt and cd to the folder that contains the [project_name] folder.
+ * Execute this command:
+`ant -Dproject="[project_name]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
+ * Confirm that this has in fact created a new "[project_name]Test" folder beside your project folder and copied files and folders into it.
+ * Import the "[project_name]Test" folder as an Eclipse project into Eclipse.
+ * Modify /[project_name]Test/test/flexunit2/skinning/styles.css as appropriate. You'll find explanatory comments in the file to guide you.
+ * If you embed fonts in styles.css, put the font resource files in /[project_name]Test/test/flexunit2/skinning/fonts/
+ * You're now ready to start writing your test classes.
+
+==  Writing Tests With Visual Assertions ==
+
+
+===  1. Create A New Test Class ===
+
+Instead of subclassing TestCase (the standard FlexUnit approach) subclass com.allurent.flexunit2.vfu.framework.VfuTestCase.
+
+Note that VfuTestCase extends TestCase so you can do all the things that you can normally do in FlexUnit test classes. The next section explains how to write visual test methods but you can also write standard FlexUnit test methods and assertions.
+
+As usual, your test class's name should end with "Test".
+
+===  2. Write Visual Test Methods ===
+
+Let's start with an example:
+{{{
+testMyAccordianComponent():void
+        {
+            var comp:MyAccordianComponent = new MyAccordianComponent();
+            with (testSequence)
+            {
+                addSetProperty(comp, "selectedIndex", 1);
+                addRefresh();
+                addAssertComponentMatchBaseline(comp, 1);
+
+                addSetProperty(comp, "selectedIndex", 2);
+                addEventDispatch(comp.getHeaderAt(0), new MouseEvent(MouseEvent.MOUSE_DOWN));
+                addRefresh();
+                addAssertComponentMatchBaseline(comp, 2);
+
+                start();
+            }
+        }
+}}}
+As you can see, the example method:
+ * First, instantiates a component
+ * Second, tells VfuTestCase.testSequence a sequence of actions that it wants to see happen relative to the component
+ * Finally, calls start()
+
+Your visual test methods should follow the same pattern as the example. The action sequence in the second step will generally consist of one or more repetitions (the example has two) of this subsequence:
+ * One or more actions that manipulate the component. These can include setting the component's properties, setting its styles, and dispatching mouse and/or keyboard events from it.
+ * A refresh. This involves several actions under the hood but essentially allows the component to display fully before its appearance is tested. (You can look at the code for TestSequenceManager.addRefresh() if you're curious about the details.)
+ * An assertion that the component's appearance will now match a saved baseline. Note that, in addition to the component instance, we pass in an ID integer to the addAssertComponentMatchBaseline() call. This must be unique for each such call within a given method, and is used by VFU to determine the name of the component's baseline file.
+
+See the Visual FlexUnit ASDocs for com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager for details on its "add[someCommand]() methods, their parameters, etc. ASDocs can be found at \dev\vfu\visualflexunit\build\as3doc\index.html.
+
+As usual, your test method names should start with "test".
+
+In case you're curious, here's a quick overview of what is going on under the hood. For each test method, VFU attaches your component to the display list, assembles a queue of TestSequenceCommand instances, and executes the queue when you call start(). There isn't a direct one-to-one relationship between the calls you add to your test method and commands added to the queue; for example addRefresh() adds three commands to the queue. Some of the commands are synchronous (e.g. SetProperty) while others (e.g. those created by addRefresh()) are asynchronous.
+
+===  3. Add your test class to VfuGuiFlexUnitAllTests.as ===
+
+Open /[project_name]Test/test/flexunit2/VfuGuiFlexUnitAllTests.as and follow the instructions in the file.
+
+You're now ready to run your tests!
+
+==  Running Tests In GUI Mode ==
+
+
+===  Launching The GUI AIR App ===
+
+The Eclipse project that we created above is an AIR project. Simply right-click VfuGuiAir.mxml in the Navigator view, the select Run As | Adobe AIR Application, Debug As | Adobe AIR Application.
+
+===  Viewing Results In GUI Mode ===
+
+As your tests run you'll see your components appearing and disappearing on the screen. Once this has stopped happening you'll see a UI that is similar to FlexUnit's, at least in part. The left hand panel has the Failures and All Tests tabs that you've come to know and love. If no failures are displayed, you're all set. Failures for visual tests come in two varieties:
+
+1. Missing Baseline failures. These occur the first time you run a given visual assertion. Confirm that the displayed image meets your expectations, then click the button that says "Yes, Use The Current Bitmap As A New Baseline". If the image displayed doesn't meet your expectations this is probably due to issues unrelated to VFU. On the other hand, if your component's image is different in VFU than it is in other settings this may be something that we need to look at so please let us know.
+
+2. Bitmap Doesn't Match Baseline errors. When these occur your best first step is probably to click the Open Diff Viewer button. This will display both images, alternating, so that you can easily see how they differ.
+ * If the difference between the two images is visually obvious you will need to think about why this is happening and what to do next. This is a fairly open-ended scenario that we can't fully address here. One option that is available to you is to bless your test result image ("current image") as a new baseline image.
+ * If the difference between the two images isn't visually obvious, this is a different sort of problem. It suggests that the algorithms that we are using to ignore such unimportant differences is in need of tweaking, so please let us know.
+
+==  Running Tests In Ant Mode ==
+
+
+===  Build File Properties ===
+
+You need to tell the build process to use Flex 3 when it compiles. This is done by setting two properties in your dev/build-user.properties file as follows:
+{code:none}
+flex2.dir=${root.dir}/../lib/flex/3.0
+flex2.standalone.player=${flex2.dir}/Player/debug/FlashPlayer.exe
+{code}
+
+===  Automated Mode In Flash Player ===
+
+ * Compile the project that you are testing and all libraries upon which it depends.
+ * In the command prompt:
+  * cd to the [project_name]Test folder.
+  * Execute "ant test"
+  * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures.
+
+===  Automated Mode In Mozilla ===
+
+If you'd like to run your tests in Firefox, simply set the following properties in your dev/build-user.properties file:
+{code:none}
+# adjust browser location to suit your local system
+mozilla.browser.executable=C:/Apps/Firefox/firefox.exe
+arc-flexunit2.using.mozilla=true
+{code}
+
+===  Automated Mode In AIR ===
+
+(Not yet implemented)
+
+===  If Tests Fail In Automated Mode ===
+
+If any of your tests fail you will probably want to run them in GUI mode in order to see how your test results differ from the saved baseline images.
+
+If you've run your tests on a different platform from that in which their baseline files were created - e.g. you created baselines in AIR, then ran the tests in the Flash Player, and they failed - you should obviously run the same test-platform-type of GUI as you just used to view the differences. Running the GUI in the platform in which the baseline files were created will probably result in your tests passing, which won't tell you much.
+
+==  Compiling And Running Tests In SWF GUI Mode ==
+
+ * Open a command prompt and cd to the [project_name] folder.
+ * Execute this command:
+{noformat}
+ant test-swf-gui
+{noformat}
+ * This will clean your build directory, compile the SWF GUI, and run it. The SWF GUI is essentially the same as the AIR GUI with these exceptions:
+  * The app is launched using Ant
+  * It runs in Flash Player rather than AIR
+  * We haven't implemented the ability to save baseline in the SWF GUI version yet
