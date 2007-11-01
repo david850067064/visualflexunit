@@ -1,9 +1,9 @@
 #summary Main documentation page for Visual FlexUnit
 
 In these tests you can:
-* Instantiate and initialize UI components
-* Place them in a series of test states by means of:
- * property settings
- * style settings
- * simulated mouse and keyboard events
-* Write "visual assertions" that compare the bitmaps of the components' appearance with saved baselines
+ * Instantiate and initialize UI components
+ * Place them in a series of test states by means of:
+  * property settings
+  * style settings
+  * simulated mouse and keyboard events
+ * Write "visual assertions" that compare the bitmaps of the components' appearance with saved baselines
