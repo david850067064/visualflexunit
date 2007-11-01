@@ -109,7 +109,7 @@ Steps:
  * If a /dev/[!sub_folder]/[!project_name]Test/ test project folder already exists, delete or rename it.
  * Open a command prompt and cd to !sub_folder.
  * Execute this command:
-`         ant -Dproject="[!project_name]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
+       `ant -Dproject="[!project_name]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
  * Confirm that this has in fact created a new "[!project_name]Test" folder inside of !sub_folder.
  * Import the "[!project_name]Test" folder as an Eclipse project into Eclipse.
  * Modify /[!project_name]Test/test/flexunit2/skinning/styles.css as appropriate. You'll find explanatory comments in the file to guide you.
