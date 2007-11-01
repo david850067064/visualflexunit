@@ -1,4 +1,4 @@
-#summary Main documentation page for Visual !FlexUnit
+#summary Main documentation page for Visual FlexUnit
 
 =  Visual !FlexUnit (VFU) =
 
