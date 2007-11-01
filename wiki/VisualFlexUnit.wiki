@@ -2,17 +2,17 @@
 
 =  Visual !FlexUnit (VFU) =
 
-==  Note: This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ################################ ==
-
-Visual !FlexUnit is an [http://www.allurent.com Allurent] open source project to establish a framework for the testing of components' visual appearance.  The goal is to enhance [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
+===  Note: This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ############# ===
 
 Contributors:
-- Douglas !McCarroll
-- Joe Berkovitz
-- Marty Frenzel
-- Tim Walling
+ * Douglas !McCarroll
+ * Joe Berkovitz
+ * Marty Frenzel
+ * Tim Walling
 
 ==  Introduction ==
+
+Visual !FlexUnit is an [http://www.allurent.com Allurent] open source project to establish a framework for the testing of components' visual appearance.  The goal is to enhance [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
 
 For the present VFU should be considered an experiment in progress. While it's now reaching the point where it's a practical and useful tool, it's also like a toddler who is just taking baby steps. Simply stated, we don't have enough experience working with it to know where tweaks will be required. So, if your visual tests fail when you think they should be passing, this may simply be an indication that VFU needs to be tweaked. Please be in touch if you think that this may be the case.
 
@@ -28,9 +28,9 @@ In these tests you can:
   * property settings
   * style settings
   * simulated mouse and keyboard events
- * Write "visual assertions" that compare the bitmaps of the components' appearance with saved baselines
+ * Write "visual assertions" that compare the components' appearance with saved baseline bitmaps
 
-Tests succeed if bitmaps and baselines are close enough to identical to be visually indistinguishable.
+Tests succeed if components and baselines are close enough to identical to be visually indistinguishable.
 
 Tests can be run either in GUI mode or through Ant.
 
@@ -42,7 +42,7 @@ Besides reporting errors, GUI mode also allows you to:
  * Use a visual diff viewer to see how test result images differ from baseline images
  * View statistics on how many pixels differ, by how much, etc.
  * In AIR mode, you can bless failed test images and thereby create new baselines. Cases where you would want to do this include:
-  * The unit test is new and you need to create an original baseline image
+  * The unit test is new and you need to create its original baseline image
   * You decide that the new test result image is acceptable and can become the new baseline
 
 ===  Ant Mode ===
@@ -65,53 +65,58 @@ While Adobe has done a great job of making Flash & Flex a write-once / deploy-an
 
 To date our limited testing has only detected a) differences that aren't visually noticeable, and b) differences in very unusual cases that you would never use in the real world. Still, it doesn't hurt to check. By running regression tests on multiple platforms you can be assured that any unseemly differences in component rendering will be brought to your attention quickly.
 
+==  Folder Layout ==
+
+The downloadable visualflexunit.zip file unzips into this folder hierarchy:
+{{{
+  visualflexunit
+    dev
+      arc-flexunit2             - build process code
+      flexunit                  - FlexUnit source code
+      tools                     - build process code
+      vfu
+        vfuexample              - project containing example components
+        vfuexampleTest          - example visual test project
+        visualflexunit          - Visual FlexUnit source code
+        visualflexunitTest      - contains unit tests for Visual FlexUnit code
+ }}}
+
 ==  Bootstrapping Test Projects and the Example Test Project ==
 
 The Visual !FlexUnit download includes Ant scripts that will allow you to bootstrap a test project for a project that you've created that contains visual content. Bootstrapping includes:
  * Creation of a folder hierarchy for your project.
- * Creation of FlexBuilder project files, so that the project can be imported into Eclipse.
+ * Creation of !FlexBuilder project files, so that the project can be imported into Eclipse.
  * Creation of framework code files including GUI App files, a CSS file, Ant files, etc.
 
-We also include a visual test project at /dev/vfu/vfuexampleTest for the included /dev/vfu/vfuexample/ project. This project includes all of the above, plus:
+We also include an example visual test project at /dev/vfu/vfuexampleTest/ for the included /dev/vfu/vfuexample/ project. This project includes all of the above, plus:
  * Fully implemented test code
  * Fully implemented Ant code that wires the test project into the build process
 
 It is our hope that you'll be able use the bootstrap process to start your test projects, and use vfuexampleTest as a reference project to see how test project details are implemented.
 
-===  Assumptions: ===
+Assumptions:
 
-We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. (Experienced programmers could probably work around some of these requirements, e.g. by compiling without FlexBuilder, but if you attempt such work-arounds you'll need a much deeper knowledge of the tech, and will be on your own - we can't offer any hand-holding for scenarios outside of the one outlined here.)
+We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. (Experienced programmers could probably work around some of these requirements, e.g. by compiling without !FlexBuilder, but if you attempt such work-arounds you'll need a much deeper knowledge of the tech.)
  * You have Ant installed and are at least somewhat familiar with it.
- * You have FlexBuilder 3.0 installed and are at least somewhat familiar with it.
+ * You have !FlexBuilder 3.0 installed and are at least somewhat familiar with it.
  * You are at least somewhat familiar with [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit].
-
-===  Folder Layout ===
-
-The visualflexunit.zip unzips into the following layout:
- * dev
-  * vfu
-
- * Your folder for the project you are testing is in a sub-subfolder of /dev/. Example: /dev/subFolder/yourProject
- * Conventions: Throughout these instructions:
-  * The string "[project_name]" represents the name of the project you are testing (e.g. "yourProject" in the example just cited).
-  * The string "[sub_folder]" represents the name of [project_name]'s parent folder  (e.g. "subFolder" in the example just cited).
- * You will be creating a /dev/[subFolder]/[project_name]Test/ test project folder by running the Ant bootstrap process specified below. We assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
-
-Note: /dev/vfu/vfuexample contains a simple example project that you can practice this procedure upon if you wish. Simply replace the strings "[sub_folder]" and "[project_name]" in the instructions below with "vfu" and "vfuexample" respectively.
+ * Your folder for the project you are testing is in a sub-subfolder of /dev/. Example: /dev/sub_folder/project_name
+ * (Throughout these instructions we'll be using [sub_folder] and [project_name] to represent these folder names)
+ * You will be creating a /dev/[sub_folder]/[project_name]Test/ test project folder by running the Ant bootstrap process specified below. We assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
 
 Steps:
- * If an /dev/[sub_folder]/[project_name]Test/ test project folder already exists, delete or rename it.
- * Open a command prompt and cd to the folder that contains the [project_name] folder.
+
+ * If a /dev/[sub_folder]/[project_name]Test/ test project folder already exists, delete or rename it.
+ * Open a command prompt and cd to sub_folder.
  * Execute this command:
 `         ant -Dproject="[project_name]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
- * Confirm that this has in fact created a new "[project_name]Test" folder beside your project folder and copied files and folders into it.
+ * Confirm that this has in fact created a new "[project_name]Test" folder inside of sub_folder.
  * Import the "[project_name]Test" folder as an Eclipse project into Eclipse.
  * Modify /[project_name]Test/test/flexunit2/skinning/styles.css as appropriate. You'll find explanatory comments in the file to guide you.
  * If you embed fonts in styles.css, put the font resource files in /[project_name]Test/test/flexunit2/skinning/fonts/
  * You're now ready to start writing your test classes.
 
 ==  Writing Tests With Visual Assertions ==
-
 
 ===  1. Create A New Test Class ===
 
