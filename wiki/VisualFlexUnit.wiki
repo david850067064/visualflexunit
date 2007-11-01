@@ -1,10 +1,10 @@
-#summary Main documentation page for Visual FlexUnit
+#summary Main documentation page for Visual !FlexUnit
 
 =  Visual !FlexUnit (VFU) =
 
-==  Note: This is a rough draft of Visual FlexUnit's documentation. Visual FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ################################ ==
+==  Note: This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ################################ ==
 
-Visual FlexUnit is an Allurent open source project to establish a framework for the testing of components' visual appearance.  The goal is to enhance FlexUnit with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
+Visual !FlexUnit is an Allurent open source project to establish a framework for the testing of components' visual appearance.  The goal is to enhance [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
 
 Contributors:
 - Douglas McCarroll
@@ -20,7 +20,7 @@ If any of the explanations or instructions on this page are less than clear we'd
 
 ==  Overview ==
 
-Visual FlexUnit allows you to write "visual tests" for your Adobe Flex projects.
+Visual !FlexUnit allows you to write "visual tests" for your Adobe Flex projects.
 
 In these tests you can:
  * Instantiate and initialize UI components
@@ -67,7 +67,7 @@ To date our limited testing has only detected a) differences that aren't visuall
 
 ==  Bootstrapping Test Projects and the Example Test Project ==
 
-The Visual FlexUnit download includes Ant scripts that will allow you to bootstrap a test project for a project that you've created that contains visual content. Bootstrapping includes:
+The Visual !FlexUnit download includes Ant scripts that will allow you to bootstrap a test project for a project that you've created that contains visual content. Bootstrapping includes:
  * Creation of a folder hierarchy for your project.
  * Creation of FlexBuilder project files, so that the project can be imported into Eclipse.
  * Creation of framework code files including GUI App files, a CSS file, Ant files, etc.
@@ -83,7 +83,7 @@ It is our hope that you'll be able use the bootstrap process to start your test 
 We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. (Experienced programmers could probably work around some of these requirements, e.g. by compiling without FlexBuilder, but if you attempt such work-arounds you'll need a much deeper knowledge of the tech, and will be on your own - we can't offer any hand-holding for scenarios outside of the one outlined here.)
  * You have Ant installed and are at least somewhat familiar with it.
  * You have FlexBuilder 3.0 installed and are at least somewhat familiar with it.
- * You are at least somewhat familiar with FlexUnit.
+ * You are at least somewhat familiar with [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit].
 
 ===  Folder Layout ===
 
@@ -115,9 +115,9 @@ Steps:
 
 ===  1. Create A New Test Class ===
 
-Instead of subclassing TestCase (the standard FlexUnit approach) subclass com.allurent.flexunit2.vfu.framework.VfuTestCase.
+Instead of subclassing TestCase (the standard !FlexUnit approach) subclass com.allurent.flexunit2.vfu.framework.VfuTestCase.
 
-Note that VfuTestCase extends TestCase so you can do all the things that you can normally do in FlexUnit test classes. The next section explains how to write visual test methods but you can also write standard FlexUnit test methods and assertions.
+Note that VfuTestCase extends TestCase so you can do all the things that you can normally do in !FlexUnit test classes. The next section explains how to write visual test methods but you can also write standard [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] test methods and assertions.
 
 As usual, your test class's name should end with "Test".
 
@@ -153,7 +153,7 @@ Your visual test methods should follow the same pattern as the example. The acti
  * A refresh. This involves several actions under the hood but essentially allows the component to display fully before its appearance is tested. (You can look at the code for TestSequenceManager.addRefresh() if you're curious about the details.)
  * An assertion that the component's appearance will now match a saved baseline. Note that, in addition to the component instance, we pass in an ID integer to the addAssertComponentMatchBaseline() call. This must be unique for each such call within a given method, and is used by VFU to determine the name of the component's baseline file.
 
-See the Visual FlexUnit ASDocs for com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager for details on its "add[someCommand]() methods, their parameters, etc. ASDocs can be found at \dev\vfu\visualflexunit\build\as3doc\index.html.
+See the Visual !FlexUnit ASDocs for com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager for details on its "add[someCommand]() methods, their parameters, etc. ASDocs can be found at \dev\vfu\visualflexunit\build\as3doc\index.html.
 
 As usual, your test method names should start with "test".
 
@@ -174,7 +174,7 @@ The Eclipse project that we created above is an AIR project. Simply right-click 
 
 ===  Viewing Results In GUI Mode ===
 
-As your tests run you'll see your components appearing and disappearing on the screen. Once this has stopped happening you'll see a UI that is similar to FlexUnit's, at least in part. The left hand panel has the Failures and All Tests tabs that you've come to know and love. If no failures are displayed, you're all set. Failures for visual tests come in two varieties:
+As your tests run you'll see your components appearing and disappearing on the screen. Once this has stopped happening you'll see a UI that is similar to !FlexUnit's, at least in part. The left hand panel has the Failures and All Tests tabs that you've come to know and love. If no failures are displayed, you're all set. Failures for visual tests come in two varieties:
 
 1. Missing Baseline failures. These occur the first time you run a given visual assertion. Confirm that the displayed image meets your expectations, then click the button that says "Yes, Use The Current Bitmap As A New Baseline". If the image displayed doesn't meet your expectations this is probably due to issues unrelated to VFU. On the other hand, if your component's image is different in VFU than it is in other settings this may be something that we need to look at so please let us know.
 
