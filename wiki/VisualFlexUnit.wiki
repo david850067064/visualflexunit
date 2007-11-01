@@ -7,3 +7,5 @@ In these tests you can:
   * style settings
   * simulated mouse and keyboard events
  * Write "visual assertions" that compare the bitmaps of the components' appearance with saved baselines
+
+The string "\[project_name\]" represents the name of th
