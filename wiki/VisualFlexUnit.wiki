@@ -4,10 +4,10 @@
 
 ==  Note: This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ################################ ==
 
-Visual !FlexUnit is an Allurent open source project to establish a framework for the testing of components' visual appearance.  The goal is to enhance [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
+Visual !FlexUnit is an [http://www.allurent.com Allurent] open source project to establish a framework for the testing of components' visual appearance.  The goal is to enhance [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
 
 Contributors:
-- Douglas McCarroll
+- Douglas !McCarroll
 - Joe Berkovitz
 - Marty Frenzel
 - Tim Walling
@@ -103,7 +103,7 @@ Steps:
  * If an /dev/[sub_folder]/[project_name]Test/ test project folder already exists, delete or rename it.
  * Open a command prompt and cd to the folder that contains the [project_name] folder.
  * Execute this command:
-`ant -Dproject="[project_name]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
+`         ant -Dproject="[project_name]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
  * Confirm that this has in fact created a new "[project_name]Test" folder beside your project folder and copied files and folders into it.
  * Import the "[project_name]Test" folder as an Eclipse project into Eclipse.
  * Modify /[project_name]Test/test/flexunit2/skinning/styles.css as appropriate. You'll find explanatory comments in the file to guide you.
@@ -188,10 +188,10 @@ As your tests run you'll see your components appearing and disappearing on the s
 ===  Build File Properties ===
 
 You need to tell the build process to use Flex 3 when it compiles. This is done by setting two properties in your dev/build-user.properties file as follows:
-{code:none}
+{{{
 flex2.dir=${root.dir}/../lib/flex/3.0
 flex2.standalone.player=${flex2.dir}/Player/debug/FlashPlayer.exe
-{code}
+}}}
 
 ===  Automated Mode In Flash Player ===
 
@@ -204,11 +204,11 @@ flex2.standalone.player=${flex2.dir}/Player/debug/FlashPlayer.exe
 ===  Automated Mode In Mozilla ===
 
 If you'd like to run your tests in Firefox, simply set the following properties in your dev/build-user.properties file:
-{code:none}
+{{{
 # adjust browser location to suit your local system
 mozilla.browser.executable=C:/Apps/Firefox/firefox.exe
 arc-flexunit2.using.mozilla=true
-{code}
+}}}
 
 ===  Automated Mode In AIR ===
 
