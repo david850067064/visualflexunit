@@ -1,8 +1,8 @@
 #summary Main documentation page for Visual FlexUnit
 
-=  Visual FlexUnit (VFU) =
+=  Visual !FlexUnit (VFU) =
 
-=  Note: This is a rough draft of Visual FlexUnit's documentation. Visual FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ################################ =
+==  Note: This is a rough draft of Visual FlexUnit's documentation. Visual FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ################################ ==
 
 Visual FlexUnit is an Allurent open source project to establish a framework for the testing of components' visual appearance.  The goal is to enhance FlexUnit with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
 
