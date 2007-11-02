@@ -2,7 +2,7 @@
 
 =  Visual !FlexUnit (VFU) =
 
-===  Note: This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been release to the public, but we hope to do so soon. If you'd like to be notified when it is released please ############# ===
+===  Note: (2007.11.02) This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been release to the public, but we hope to do so soon, i.e. weeks, not months. ===
 
 Contributors:
  * Douglas !McCarroll
@@ -101,19 +101,19 @@ We make the following assumptions. If these are correct you should be able to bo
  * You have !FlexBuilder 3.0 installed and are at least somewhat familiar with it.
  * You are at least somewhat familiar with [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit].
  * The folder for the project you are testing is in a sub-subfolder of /dev/. Example: `/dev/sub_folder/project_name`
- * (Throughout these instructions we'll be using `[sub_folder]` and `[project_name]` to represent these folder names)
+ * (Throughout these instructions we'll be using `sub_folder` and `project_name` to represent these folder names)
  * You will be creating a `/dev/[sub_folder]/[project_name]Test/` test project folder by running the Ant bootstrap process specified below. We assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
 
 Steps:
 
- * If a /dev/`[sub_folder]`/`[project_name]`Test/ test project folder already exists, delete or rename it.
+ * If a `/dev/[sub_folder]/[project_name]Test/` test project folder already exists, delete or rename it.
  * Open a command prompt and cd to `sub_folder`.
  * Execute this command:
          `ant -Dproject="[project_name]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
- * Confirm that this has in fact created a new "`[project_name]`Test" folder inside of `sub_folder`.
- * Import the "`[project_name]`Test" folder as an Eclipse project into Eclipse.
- * Modify /`[project_name]`Test/test/flexunit2/skinning/styles.css as appropriate. You'll find explanatory comments in the file to guide you.
- * If you embed fonts in styles.css, put the font resource files in /`[project_name]`Test/test/flexunit2/skinning/fonts/
+ * Confirm that this has in fact created a new "`[project_name]Test`" folder inside `sub_folder`.
+ * Import the "`[project_name]Test`" folder as an Eclipse project into Eclipse.
+ * Modify `/[project_name]Test/test/flexunit2/skinning/styles.css` as appropriate. You'll find explanatory comments in the file to guide you.
+ * If you embed fonts in styles.css, put the font resource files in `/[project_name]Test/test/flexunit2/skinning/fonts/`
  * You're now ready to start writing your test classes.
 
 ==  Writing Tests With Visual Assertions ==
