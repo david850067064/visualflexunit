@@ -71,13 +71,9 @@ To date our limited testing has only detected a) differences that aren't visuall
 
 The remainder of this page gives directions on how to use Visual !FlexUnit.
 
-===== Step 1: Bootstrapping a Visual Test Project =====
+*Step 1: Bootstrapping a Visual Test Project:* In this section we show you how to use included Ant scripts to create an empty project framework for your visual test project.
 
-In this section we show you how to use included Ant scripts to create an empty project framework for your visual test project.
-
-===== Step 2: Writing Visual Tests =====
-
-Writing test classes and methods for VFU.
+*Step 2: Writing Visual Tests:* Writing test classes and methods for VFU.
 
 ===== Step 3: Using VFU's AIR GUI =====
 
