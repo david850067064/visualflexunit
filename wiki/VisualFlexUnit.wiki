@@ -65,10 +65,37 @@ While Adobe has done a great job of making Flash & Flex a write-once / deploy-an
 
 To date our limited testing has only detected a) differences that aren't visually noticeable, and b) differences in very unusual cases that you would never use in the real world. Still, it doesn't hurt to check. By running regression tests on multiple platforms you can be assured that any unseemly differences in component rendering will be brought to your attention quickly.
 
+== How To Use Visual !FlexUnit ==
 
+=== Section Overview ===
 
+The remainder of this page gives directions on how to use Visual !FlexUnit.
 
+===== Step 1: Bootstrapping a Visual Test Project =====
 
+In this section we show you how to use included Ant scripts to create an empty project framework for your visual test project.
+
+===== Step 2: Writing Visual Tests =====
+
+Writing test classes and methods for VFU.
+
+===== Step 3: Using VFU's AIR GUI =====
+
+Here we give directions for running your visual tests in VFU's AIR GUI. This may be all you need to know. We think that VFU will be useful to many users who just use the AIR GUI to run tests, and skip the remaining sections.
+
+===== Step 4: Connecting to VFU's Build Process =====
+
+Fourth, we explain how wire your test project into the Ant build process that we've included with your download. This can be considered a continuation of Step 1 - the second half of bootstrapping a test project. We've moved it into its own Step 4 because some users won't want to do this.
+
+===== Step 5: Using the Build Process
+
+Fifth, we explain how to use the build process to:
+ * Run your tests in automated mode in the Flash Player
+ * Run your tests in automated mode in FireFox
+ 
+===== Step 6: Using VFU's SWF-Based GUI
+ 
+See details below on why, if you've gotten this far, you'd want to do this. :)
 
 ===  Folder Layout ===
 
