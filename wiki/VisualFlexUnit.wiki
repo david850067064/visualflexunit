@@ -113,16 +113,16 @@ Steps:
  * Confirm that this has in fact created a new "`[project_name]Test`" folder inside `sub_folder`.
  * Import the "`[project_name]Test`" folder as an Eclipse project into Eclipse.
  * Modify `/[project_name]Test/test/flexunit2/skinning/styles.css` as appropriate. You'll find explanatory comments in the file to guide you.
- * If you embed fonts in styles.css, put the font resource files in `/[project_name]Test/test/flexunit2/skinning/fonts/`
+ * If you embed fonts in styles.css, put the font resource files ###### in `/[project_name]Test/test/flexunit2/skinning/fonts/`
  * You're now ready to start writing your test classes.
 
 ==  Writing Tests With Visual Assertions ==
 
 ===  1. Create A New Test Class ===
 
-Instead of subclassing TestCase (the standard !FlexUnit approach) subclass com.allurent.flexunit2.vfu.framework.VfuTestCase.
+Instead of subclassing `TestCase` (the standard !FlexUnit approach) subclass `com.allurent.flexunit2.vfu.framework.VfuTestCase`.
 
-Note that VfuTestCase extends TestCase so you can do all the things that you can normally do in !FlexUnit test classes. The next section explains how to write visual test methods but you can also write standard [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] test methods and assertions.
+Note that `VfuTestCase` extends `TestCase` so you can do all the things that you can normally do in !FlexUnit test classes. The next section explains how to write visual test methods but you can also write standard [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] test methods and assertions.
 
 As usual, your test class's name should end with "Test".
 
@@ -150,23 +150,23 @@ testMyAccordianComponent():void
 }}}
 As you can see, the example method:
  * First, instantiates a component
- * Second, tells VfuTestCase.testSequence a sequence of actions that it wants to see happen relative to the component
+ * Second, tells `VfuTestCase.testSequence` a sequence of actions that it wants to see happen relative to the component
  * Finally, calls start()
 
 Your visual test methods should follow the same pattern as the example. The action sequence in the second step will generally consist of one or more repetitions (the example has two) of this subsequence:
  * One or more actions that manipulate the component. These can include setting the component's properties, setting its styles, and dispatching mouse and/or keyboard events from it.
- * A refresh. This involves several actions under the hood but essentially allows the component to display fully before its appearance is tested. (You can look at the code for TestSequenceManager.addRefresh() if you're curious about the details.)
- * An assertion that the component's appearance will now match a saved baseline. Note that, in addition to the component instance, we pass in an ID integer to the addAssertComponentMatchBaseline() call. This must be unique for each such call within a given method, and is used by VFU to determine the name of the component's baseline file.
+ * A refresh. This involves several actions under the hood but essentially allows the component to display fully before its appearance is tested. (You can look at the code for `TestSequenceManager.addRefresh()` if you're curious about the details.)
+ * An assertion that the component's appearance will now match a saved baseline. Note that, in addition to the component instance, we pass in an ID integer to the `addAssertComponentMatchBaseline()` call. This must be unique for each such call within a given method, and is used by VFU to determine the name of the component's baseline file.
 
-See the Visual !FlexUnit ASDocs for com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager for details on its "add[some_command]() methods, their parameters, etc. ASDocs can be found at \dev\vfu\visualflexunit\build\as3doc\index.html.
+See the Visual !FlexUnit ASDocs for `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager` for details on its `add[some_command]()` methods, their parameters, etc. ASDocs can be found at `\dev\vfu\visualflexunit\build\as3doc\index.html`.
 
 As usual, your test method names should start with "test".
 
-In case you're curious, here's a quick overview of what is going on under the hood. For each test method, VFU attaches your component to the display list, assembles a queue of TestSequenceCommand instances, and executes the queue when you call start(). There isn't a direct one-to-one relationship between the calls you add to your test method and commands added to the queue; for example addRefresh() adds three commands to the queue. Some of the commands are synchronous (e.g. SetProperty) while others (e.g. those created by addRefresh()) are asynchronous.
+In case you're curious, here's a quick overview of what is going on under the hood. For each test method, VFU attaches your component to the display list, assembles a queue of `TestSequenceCommand` instances, and executes the queue when you call `start()`. There isn't a direct one-to-one relationship between the calls you add to your test method and commands added to the queue; for example `addRefresh()` adds three commands. Some of the commands are synchronous (e.g. `SetProperty`) while others (e.g. those created by `addRefresh()`) are asynchronous.
 
-===  3. Add your test class to VfuGuiFlexUnitAllTests.as ===
+===  3. Add your test class to !VfuGuiFlexUnitAllTests.as ===
 
-Open /`[project_name]Test/test/flexunit2/VfuGuiFlexUnitAllTests.as` and follow the instructions in the file.
+Open `/[project_name]Test/test/flexunit2/VfuGuiFlexUnitAllTests.as` and follow the instructions in the file.
 
 You're now ready to run your tests!
 
@@ -175,28 +175,29 @@ You're now ready to run your tests!
 
 ===  Launching The GUI AIR App ===
 
-The Eclipse project that we created above is an AIR project. Simply right-click VfuGuiAir.mxml in the Navigator view, the select Run As | Adobe AIR Application, Debug As | Adobe AIR Application.
+The Eclipse project that we created above is an AIR project right click your project in the Navigator view and select Run As | Adobe AIR Application, Debug As | Adobe AIR Application.
 
 ===  Viewing Results In GUI Mode ===
 
-As your tests run you'll see your components appearing and disappearing on the screen. Once this has stopped happening you'll see a UI that is similar to !FlexUnit's, at least in part. The left hand panel has the Failures and All Tests tabs that you've come to know and love. If no failures are displayed, you're all set. Failures for visual tests come in two varieties:
+As your tests run you'll see your components appearing and disappearing on the screen. When this stops you'll see a UI that is in some ways similar to !FlexUnit's. The left hand panel has the Failures and All Tests tabs that you've come to know and love. If no failures are displayed, you're all set. Failures for visual tests come in two varieties:
 
-1. Missing Baseline failures. These occur the first time you run a given visual assertion. Confirm that the displayed image meets your expectations, then click the button that says "Yes, Use The Current Bitmap As A New Baseline". If the image displayed doesn't meet your expectations this is probably due to issues unrelated to VFU. On the other hand, if your component's image is different in VFU than it is in other settings this may be something that we need to look at so please let us know.
+1. Missing Baseline failures. These occur the first time you run a given visual assertion. Confirm that the displayed image meets your expectations, then click the button that says "Yes, Use The Current Bitmap As A New Baseline". If the image displayed doesn't meet your expectations this is probably due to issues unrelated to VFU. On the other hand, if your component's image is different in VFU than it is in other settings this may be something that we need to look at so please [http://code.google.com/p/visualflexunit/issues/list let us know].
+
+
+
+Note that VFU will only report one failure of this type for a given test method each time you run it. In other words, if you write a test method with four visual assertions, you'll have to run the GUI version of VFU four times in order to create the requisite four baseline files. We suggest that you run the GUI immediately after you write each assertion to avoid confusion.
+
+
 
 2. Bitmap Doesn't Match Baseline errors. When these occur your best first step is probably to click the Open Diff Viewer button. This will display both images, alternating, so that you can easily see how they differ.
  * If the difference between the two images is visually obvious you will need to think about why this is happening and what to do next. This is a fairly open-ended scenario that we can't fully address here. One option that is available to you is to bless your test result image ("current image") as a new baseline image.
- * If the difference between the two images isn't visually obvious, this is a different sort of problem. It suggests that the algorithms that we are using to ignore such unimportant differences is in need of tweaking, so please let us know.
+ * If the difference between the two images isn't visually obvious, this is a different sort of problem. It suggests that the algorithms that we are using to ignore such unimportant differences are in need of tweaking, so please [http://code.google.com/p/visualflexunit/issues/list let us know].
 
 ==  Running Tests In Ant Mode ==
 
+=== Configure /dev/build-user.properties ===
 
-===  Build File Properties ===
-
-You need to tell the build process to use Flex 3 when it compiles. This is done by setting two properties in your dev/build-user.properties file as follows:
-{{{
-flex2.dir=${root.dir}/../lib/flex/3.0
-flex2.standalone.player=${flex2.dir}/Player/debug/FlashPlayer.exe
-}}}
+Before you run tests in Ant mode for the first time open '/dev/build-user.properties` and modify the settings as needed.
 
 ===  Automated Mode In Flash Player ===
 
