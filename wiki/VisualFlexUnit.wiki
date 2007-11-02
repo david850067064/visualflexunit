@@ -102,14 +102,14 @@ We make the following assumptions. If these are correct you should be able to bo
  * You are at least somewhat familiar with [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit].
  * The folder for the project you are testing is in a sub-subfolder of /dev/. Example: `/dev/sub_folder/project_name`
  * (Throughout these instructions we'll be using `sub_folder` and `project_name` to represent these folder names)
- * You will be creating a `/dev/[sub_folder]/[project_name]Test/` test project folder by running the Ant bootstrap process specified below. We assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
+ * You will be creating a `/dev/sub_folder/[project_name]Test/` test project folder by running the Ant bootstrap process specified below. We assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
 
 Steps:
 
- * If a `/dev/[sub_folder]/[project_name]Test/` test project folder already exists, delete or rename it.
+ * If a `/dev/sub_folder/[project_name]Test/` test project folder already exists, delete or rename it.
  * Open a command prompt and cd to `sub_folder`.
  * Execute this command:
-         `ant -Dproject="[project_name]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
+         `ant -Dproject="project_name" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
  * Confirm that this has in fact created a new "`[project_name]Test`" folder inside `sub_folder`.
  * Import the "`[project_name]Test`" folder as an Eclipse project into Eclipse.
  * Modify `/[project_name]Test/test/flexunit2/skinning/styles.css` as appropriate. You'll find explanatory comments in the file to guide you.
@@ -158,7 +158,7 @@ Your visual test methods should follow the same pattern as the example. The acti
  * A refresh. This involves several actions under the hood but essentially allows the component to display fully before its appearance is tested. (You can look at the code for TestSequenceManager.addRefresh() if you're curious about the details.)
  * An assertion that the component's appearance will now match a saved baseline. Note that, in addition to the component instance, we pass in an ID integer to the addAssertComponentMatchBaseline() call. This must be unique for each such call within a given method, and is used by VFU to determine the name of the component's baseline file.
 
-See the Visual !FlexUnit ASDocs for com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager for details on its "add[someCommand]() methods, their parameters, etc. ASDocs can be found at \dev\vfu\visualflexunit\build\as3doc\index.html.
+See the Visual !FlexUnit ASDocs for com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager for details on its "add[some_command]() methods, their parameters, etc. ASDocs can be found at \dev\vfu\visualflexunit\build\as3doc\index.html.
 
 As usual, your test method names should start with "test".
 
@@ -166,7 +166,7 @@ In case you're curious, here's a quick overview of what is going on under the ho
 
 ===  3. Add your test class to VfuGuiFlexUnitAllTests.as ===
 
-Open /`[project_name]`Test/test/flexunit2/VfuGuiFlexUnitAllTests.as and follow the instructions in the file.
+Open /`[project_name]Test/test/flexunit2/VfuGuiFlexUnitAllTests.as` and follow the instructions in the file.
 
 You're now ready to run your tests!
 
@@ -202,7 +202,7 @@ flex2.standalone.player=${flex2.dir}/Player/debug/FlashPlayer.exe
 
  * Compile the project that you are testing and all libraries upon which it depends.
  * In the command prompt:
-  * cd to the `[project_name]`Test folder.
+  * cd to the `[project_name]Test` folder.
   * Execute "ant test"
   * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures.
 
@@ -227,7 +227,7 @@ If you've run your tests on a different platform from that in which their baseli
 
 ==  Compiling And Running Tests In SWF GUI Mode ==
 
- * Open a command prompt and cd to the `[project_name]` folder.
+ * Open a command prompt and cd to the `project_name` folder.
  * Execute this command:
 {noformat}
 ant test-swf-gui
