@@ -94,6 +94,8 @@ We also include an example visual test project at /dev/vfu/vfuexampleTest/ for t
 
 It is our hope that you'll be able use the bootstrap process to start your test projects, and use vfuexampleTest as a reference project to see how test project details are implemented.
 
+=== Bootstrap How-To ===
+
 Assumptions:
 
 We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. (If you have sufficient Flex and Ant knowledge you can work around these, e.g. compiling your AIR GUI test app from the command line, but we don't cover such scenarios here.)
@@ -199,9 +201,11 @@ Note that VFU will only report one failure of this type for a given test method 
 
 Before you run tests in Ant mode for the first time open '/dev/build-user.properties` and modify the settings as needed.
 
+Also, you've already run your test project in AIR GUI mode and created your baselines as explained above, right?
+
 ===  Automated Mode In Flash Player ===
 
- * Compile the project that you are testing and all libraries upon which it depends.
+ * Compile the project that you are testing (`project_name`) and all libraries upon which it depends if you have not already done so.
  * In the command prompt:
   * cd to the `[project_name]Test` folder.
   * Execute "ant test"
@@ -224,16 +228,14 @@ arc-flexunit2.using.mozilla=true
 
 If any of your tests fail you will probably want to run them in GUI mode in order to see how your test results differ from the saved baseline images.
 
-If you've run your tests on a different platform from that in which their baseline files were created - e.g. you created baselines in AIR, then ran the tests in the Flash Player, and they failed - you should obviously run the same test-platform-type of GUI as you just used to view the differences. Running the GUI in the platform in which the baseline files were created will probably result in your tests passing, which won't tell you much.
+If you've run your tests on a different platform from that in which their baseline files were created (e.g. you created baselines in AIR, then ran the tests in the Flash Player, and they failed) you should obviously run the same test-platform-type of GUI (e.g. in the example just cited, run the SWF GUI) to view the differences. Running the GUI in the platform in which the baseline files were created will probably simply result in your tests passing, which won't tell you much.
 
 ==  Compiling And Running Tests In SWF GUI Mode ==
 
  * Open a command prompt and cd to the `project_name` folder.
  * Execute this command:
-{noformat}
-ant test-swf-gui
-{noformat}
+       `ant test-swf-gui`
  * This will clean your build directory, compile the SWF GUI, and run it. The SWF GUI is essentially the same as the AIR GUI with these exceptions:
   * The app is launched using Ant
   * It runs in Flash Player rather than AIR
-  * We haven't implemented the ability to save baseline in the SWF GUI version yet
+  * We haven't implemented the ability to save baselines in the SWF GUI version yet
