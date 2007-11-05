@@ -125,10 +125,10 @@ For example, if your uber project is named 'foo' and your tested project is name
 === Conventions ===
   
  * Throughout these instructions we use these conventions:
- ** *`[uber_project]`* - e.g. `foo` in the example above
- ** *`[tested_project]`* - e.g. `bar` in the example above
- ** *`[tested_project]Test`* - e.g. `barTest` in the example above
- * All `[uber_project]` and `[tested_project]` names must be unique within you build process
+  * *`[uber_project]`* - e.g. `foo` in the example above
+  * *`[tested_project]`* - e.g. `bar` in the example above
+  * *`[tested_project]Test`* - e.g. `barTest` in the example above
+ * All `[uber_project]` and `[tested_project]` names must be unique within your build process
 
 === Example Projects ===
 
