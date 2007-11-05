@@ -125,22 +125,20 @@ For example, if your uber project is named 'foo' and your tested project is name
 === Conventions ===
   
  * Throughout these instructions we use these conventions:
-  * *`[uber_project]`* - e.g. `foo` in the example above
-  * *`[tested_project]`* - e.g. `bar` in the example above
-  * *`[tested_project]Test`* - e.g. `barTest` in the example above
+  * *`[uber_project]`* - The name of your uber project, e.g. `foo` in the example above
+  * *`[tested_project]`* - The name of a project that you've created containing visual content, which you'd like to test, e.g. `bar` in the example above
+  * *`[tested_project]Test`* - The name of the test project which will contain tests for `[tested_project]`, e.g. `barTest` in the example above
  * All `[uber_project]` and `[tested_project]` names must be unique within your build process
 
 === Example Projects ===
 
-We've included two example projects in `/dev/vfu/vfuexample/` and `/dev/vfu/vfuexampleTest`. 
-
-`vfuexampleTest` is a VFU enabled test project that tests visual components in `vfuexample`. It contains all the functionality described in Step 1 for bootstrapped projects, plus:
-  * Fully implemented test code. You can refer to this when implementing Step 2.
+We've included two example projects in `/dev/vfu/`. `vfuexampleTest` is a VFU enabled test project that tests visual components in `vfuexample`. It contains all the functionality described in Step 1 for bootstrapped projects, plus:
+  * Fully implemented VFU test code. You can refer to this when implementing Step 2.
   * Fully implemented Ant code that wires the test project into the build process. You'll want to refer to this when implementing Step 4.
 
 ===  Step 1: Bootstrapping a Visual Test Project ===
 
-The Visual !FlexUnit download includes Ant scripts that will allow you to bootstrap a test project for a project that you've created that contains visual content. Bootstrapping includes:
+The Visual !FlexUnit download includes Ant scripts that will allow you to bootstrap a test project for `[tested_project]`. Bootstrapping includes:
  * Creation of a folder hierarchy for your project.
  * Creation of !FlexBuilder project files, so that the project can be imported into Eclipse.
  * Creation of framework code files including GUI App files, a CSS file, Ant files, etc.
@@ -248,9 +246,13 @@ When these occur your best first step is probably to click the Open Diff Viewer 
 
 ==== Conventions ====
 
-We'll continue to use the conventions introduced in Step 1, i.e. we use *`[tested_project]`* to represent your tested project's name, and *`[uber_project]`* to represent the intermediate folder between `/dev/` and your project's folder.
+We'll continue to use the conventions introduced in Step 1 here.  (i.e. we use *`[tested_project]`* to represent your tested project's name, and *`[uber_project]`* to represent the intermediate folder between `/dev/` and your project's folder)
 
 (For the purposes of these instructions *`[tested_project]`* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
+
+==== Visual !FlexUnit's Build Process ====
+
+If you're seriously interested in automated build processes you can find more details on VFU's build process at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess the build process wiki page].
 
 ==== build-user.properties ====
 
@@ -262,7 +264,7 @@ This file informs the build process of the location of the tested project's SWC.
 
  * Copy `/dev/vfu/vfuexample/build-assets.xml` to `/dev/[uber_project]/[tested_project]/build-assets.xml` and open the copy.
  * Replace all instances of `"vfuexample"` with `"[tested_project]"`.
- * Replace one instance of `"/vfu/"` with `"[uber_project]"`.
+ * Replace one instance of `"/vfu/"` with `"/[uber_project]/"`.
 
 ==== Tested Project's build.xml & build-imports.xml ====
 
@@ -274,10 +276,10 @@ These files wire your tested project's build-assets.xml file into the build proc
 
  * Copy `/dev/vfu/build-assets.xml` to `/dev/[uber_project]/build-assets.xml` and open the copy.
  * Change the project's name attribute from `"vfu.assets"` to `"[uber_project].assets"`.
- ** Delete one of the import lines.
- ** Edit the other one so that it reads `"<import file="[tested_project]/build-assets.xml"/>"`.
+  * Delete one of the import lines.
+  * Edit the other one so that it reads `"<import file="[tested_project]/build-assets.xml"/>"`.
  * Optional for our current purposes, but good form: In `/dev/build-assets.xml`:
- ** Add an import line that says `"<import file="[uber_project]/build-assets.xml"/>"`.
+  * Add an import line that says `"<import file="[uber_project]/build-assets.xml"/>"`.
  
 ==== Test Project's Build Files ==== 
 
@@ -294,8 +296,8 @@ This step is optional. If desired, you can create a build file for the uber proj
  * Copy `/dev/vfu/build.xml` to `/dev/[uber_project]/build.xml` and open the copy.
  * In the first line change the project's name from `vfu` to `[uber_project]`.
  * In the `clean`, `build` and `test` targets:
- ** Delete all lines that include `visualflexunit` or `visualflexunitTest`.
- ** Replace all instances of `"vfuexample"` with `[tested_project]`.
+  * Delete all lines that include `visualflexunit` or `visualflexunitTest`.
+  * Replace all instances of `"vfuexample"` with `[tested_project]`.
  
 ==== /dev/build.xml ===
 
