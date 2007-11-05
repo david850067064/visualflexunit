@@ -220,7 +220,40 @@ When these occur your best first step is probably to click the Open Diff Viewer 
 
 ===  Step 4: Connecting to VFU's Build Process ===
 
-Before you run tests in Ant mode for the first time open `/dev/build-user.properties` and modify the settings as needed.
+==== Conventions ====
+
+We'll continue to use the conventions introduced in Step 1, i.e. we use *project_name* to represent your tested project's name, and *sub_folder* to represent the intermediate folder between `/dev/` and your project's folder.
+
+We'll also use *tested project* to refer to the project_name project and *test project* to refer to the [project_name]Test project.
+
+(For the purposes of these instructions *project_name* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
+
+==== build-user.properties ====
+
+ * Open `/dev/build-user.properties` and modify the settings as needed.
+
+==== Tested Project's build-assets.xml ====
+
+This file informs the build process of the location of the tested project's SWC. These instructions assume that it's placed in a `/bin/` subfolder. If your SWC's location is different, modify the path accordingly.
+
+ * Copy `/dev/vfu/vfuexample/build-assets.xml` to `/dev/[sub_folder]/[project_name]/build-assets.xml`
+ * Replace all instances of `"vfuexample"` with `"[project_name]"`.
+ * Replace one instance of `"/vfu/"` with `"[sub_folder]"`.
+
+==== Tested Project's build.xml & build-imports.xml ====
+
+You no doubt noticed these files while copying build-assets.xml. You don't need these files for the task at hand, but might find them interesting if you'd like to automate the build process for your tested project.
+
+==== /dev/[sub_folder]/build-assets.xml ====
+
+This file wires you tested project's build-assets.xml file into the build process.
+
+ * Copy `/dev/vfu/build-assets.xml` to `/dev/[sub_folder]/build-assets.xml`.
+ * Delete one of the import lines.
+ * Edit the other one so that it reads `"<import file="[project_name]/build-assets.xml"/>"`.
+ 
+====  ==== 
+
 
 ===  Step 5: Using the Build Process ===
 
