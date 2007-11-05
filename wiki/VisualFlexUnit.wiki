@@ -2,7 +2,7 @@
 
 =  Visual !FlexUnit (VFU) =
 
-===  Note: (2007.11.02) This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been release to the public, but we hope to do so soon, i.e. weeks, not months. ===
+===  Note: (2007.11.02) This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been released to the public. We hope to do so soon, i.e. weeks, not months. ===
 
 Contributors:
  * Douglas !McCarroll
@@ -12,9 +12,9 @@ Contributors:
 
 ==  Introduction ==
 
-Visual !FlexUnit is an [http://www.allurent.com Allurent] open source project. Its goal is to establish a framework for the testing of components' visual appearance.  The goal is to enhance [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
+Visual !FlexUnit is an [http://www.allurent.com Allurent] open source project. Its goal is to establish a framework for the testing of components' visual appearance by enhancing [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
 
-For the present VFU should be considered an experiment in progress. While it's now reaching the point where it's a practical and useful tool, it's also like a toddler who is just taking baby steps. Simply stated, we don't have enough experience working with it to know where tweaks will be required. So, if your visual tests fail when you think they should be passing, this may simply be an indication that VFU needs to be tweaked. Please be in touch if you think that this may be the case.
+For the present VFU should be considered an experiment in progress. While it's now reaching the point where it's a practical and useful tool, it's also a bit like a toddler who is just taking baby steps. Simply stated, we don't have enough experience working with it to know where tweaks will be required. So, if your visual tests fail when you think they should be passing, this may simply be an indication that VFU needs to be tweaked. Please be in touch if you think that this may be the case.
 
 If any of the explanations or instructions on this page are less than clear we'd be grateful for your feedback.
 
@@ -38,17 +38,18 @@ Tests can be run either in GUI mode or through Ant.
 
 The GUI version of VFU can run as AIR app, in a browser, or in Flash Player.
 
-Besides reporting errors, GUI mode also allows you to:
+GUI mode will report errors, just like !FlexUnit. It also allows you to:
  * Use a visual diff viewer to see how test result images differ from baseline images
  * View statistics on how many pixels differ, by how much, etc.
- * In AIR mode, you can bless failed test images and thereby create new baselines. Cases where you would want to do this include:
+ * In AIR mode, you can bless the current test image, i.e. the appearance of the component that your test case has just created, and thereby create a new baseline. Cases where you would want to do this include:
   * The unit test is new and you need to create its original baseline image
-  * You decide that the new test result image is acceptable and can become the new baseline
+  * Your test has failed, but you decide that the new test result image is acceptable and can become the new baseline
 
 ===  Ant Mode ===
 
  * Simply reports whether tests pass or fail.
  * Can run tests in either Firefox or Flash Player.
+ * The build process could be modified to send notification emails, etc.
 
 ===  Why Is This Useful? ===
 
@@ -69,15 +70,15 @@ To date our limited testing has only detected a) differences that aren't visuall
 
 === Section Overview ===
 
-The following sections give directions on how to use Visual !FlexUnit.
+The following subsections give directions on how to use Visual !FlexUnit.
 
 *Step 1: Bootstrapping a Visual Test Project:* In this section we show you how to use an included Ant script to create an empty project framework for your visual test project.
 
 *Step 2: Writing Visual Tests:* Writing test classes and methods for VFU.
 
-*Step 3: Running Your Tests with the VFU AIR GUI:* How to run your visual tests in VFU's AIR GUI. This may be all you need to know. We think that VFU will be useful to many users who just use the AIR GUI to run tests, and skip the remaining steps.
+*Step 3: Running Your Tests with the VFU AIR GUI:* How to run your visual tests in VFU's AIR GUI. This may be all you need to know. We think that VFU may be useful to many users who just use the AIR GUI to run tests, and skip the remaining steps.
 
-*Step 4: Connecting to VFU's Build Process:* How wire your newly created test project into the Ant build process that we've included with your download. This can be considered a continuation of Step 1 - the second half of bootstrapping a test project. We've moved it into its own Step 4 because some users won't want to go this far.
+*Step 4: Connecting to VFU's Build Process:* How to wire your newly created test project into the Ant build process that we've included with your download. This can be considered a continuation of Step 1 - the second half of bootstrapping a test project. We've placed it in Step 4 because some users won't want to go this far.
 
 *Step 5: Using the Build Process:* Fifth, we explain how to use the build process to:
  * Run your tests in automated mode in the Flash Player
@@ -106,7 +107,7 @@ The downloadable visualflexunit.zip file unzips into this folder hierarchy:
 
 We've included two example projects in `/dev/vfu/vfuexample/` and `/dev/vfu/vfuexampleTest`. 
 
-!vfuexampleTest is a VFU enabled test project that tests visual components in vfuexample. It contains all the functionality described in Step 1 for bootstrapped projects, plus:
+`vfuexampleTest` is a VFU enabled test project that tests visual components in `vfuexample`. It contains all the functionality described in Step 1 for bootstrapped projects, plus:
   * Fully implemented test code. You can refer to this when implementing Step 2.
   * Fully implemented Ant code that wires the test project into the build process. You'll want to refer to this when implementing Step 4.
 
@@ -122,24 +123,23 @@ The Visual !FlexUnit download includes Ant scripts that will allow you to bootst
 Assumptions:
 
 We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. (If you have sufficient Flex and Ant knowledge you can work around these, e.g. compiling your AIR GUI test app from the command line, but we don't cover such scenarios here.)
- * You have Ant 1.6.5 or newer installed and are at least somewhat familiar with it.
+ * You have Ant 1.6.5 or newer installed.
  * You have !FlexBuilder 3.0 installed and are at least somewhat familiar with it.
- * You are at least somewhat familiar with [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit].
- * The folder for the project you are testing is in a sub-subfolder of /dev/. Example: `/dev/sub_folder/project_name`
- * (Throughout these instructions we'll be using `sub_folder` and `project_name` to represent these folder names)
- * You will be creating a `/dev/sub_folder/[project_name]Test/` test project folder by running the Ant bootstrap process specified below. We assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
+ * The folder for the project you are testing is in a sub-subfolder of /dev/. Example: `/dev/sub_folder/project_name`. Throughout these instructions we'll be using `sub_folder` and `project_name` to represent these folder names.
+ * As you will be creating a `/dev/sub_folder/[project_name]Test/` test project folder by running the Ant bootstrap process specified below, we assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
 
 Steps:
 
  * If a `/dev/sub_folder/[project_name]Test/` test project folder already exists, delete or rename it.
- * Ensure that you have an Eclipse path variable named `DEV_ROOT` that is set to the location of the `/dev/` folder. (You set this at Windows | Preferences | General | Workspace | Linked Resources.)
  * Open a command prompt and cd to `sub_folder`.
  * Execute this command:
-         `ant -Dproject="project_name" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/build.xml visualflexunit`
+         `ant -Dproject="project_name" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/testprojecttemplate/build.xml bootstrap-visual-test-project`
  * Confirm that this has in fact created a new "`[project_name]Test`" folder inside `sub_folder`.
+ * Open Eclipse.
+ * Ensure that you have an Eclipse path variable named `DEV_ROOT` that is set to the location of the `/dev/` folder. (You set this at Windows | Preferences | General | Workspace | Linked Resources.)
  * Import the "`[project_name]Test`" folder as an Eclipse project into Eclipse.
  * Modify `/[project_name]Test/test/flexunit2/skinning/styles.css` as appropriate. You'll find explanatory comments in the file to guide you.
- * If you embed fonts in styles.css, put the font resource files ###### in `/[project_name]Test/test/flexunit2/skinning/fonts/`
+ * If you embed fonts in styles.css, put the font resource files into `/[project_name]Test/test/flexunit2/skinning/fonts/`
  * You're now ready to start writing your test classes.
 
 ===  Step 2: Writing Visual Tests ===
