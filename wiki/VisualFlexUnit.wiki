@@ -252,7 +252,7 @@ We'll continue to use the conventions introduced in Step 1 here.  (i.e. we use *
 
 ==== Visual !FlexUnit's Build Process ====
 
-If you're seriously interested in automated build processes you can find more details on VFU's build process at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess the build process wiki page].
+If you're seriously interested in automated build processes you can find more details on VFU's build process at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess VFU's build process wiki page].
 
 ==== build-user.properties ====
 
@@ -277,13 +277,13 @@ These files wire your tested project's build-assets.xml file into the build proc
  * Copy `/dev/vfu/build-assets.xml` to `/dev/[uber_project]/build-assets.xml` and open the copy.
  * Change the project's name attribute from `"vfu.assets"` to `"[uber_project].assets"`.
   * Delete one of the import lines.
-  * Edit the other one so that it reads `"<import file="[tested_project]/build-assets.xml"/>"`.
+  * Edit the other import line so that it reads `"<import file="[tested_project]/build-assets.xml"/>"`.
  * Optional for our current purposes, but good form: In `/dev/build-assets.xml`:
   * Add an import line that says `"<import file="[uber_project]/build-assets.xml"/>"`.
  
 ==== Test Project's Build Files ==== 
 
-The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files in `/dev/[uber_project]/[tested_project]Test/` These are complete and ready to use. If you want to understand the build process we suggest that you take a look at them.
+The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files in `/dev/[uber_project]/[tested_project]Test/` These are complete and ready to use. If you want to understand the build process we suggest that you take a look at them, and at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess VFU's build process wiki page].
 
 ==== /dev/[uber_project]/build-imports.xml ====
 
@@ -308,15 +308,19 @@ This is another optional step. The `/dev/build.xml` file does the same thing as 
 
 ===  Step 5: Using the Build Process ===
 
-Also, you've already run your test project in AIR GUI mode and created your baselines as explained above, right?
+==== Prerequisites ====
+
+We assume that you have done the following:
+
+ * You've run your test project in AIR GUI mode and created your baselines as explained above.
+ * Compiled `[tested_project]` and all libraries upon which it depends.
 
 ====  Automated Mode In Flash Player ====
 
- * Compile the project that you are testing (`[tested_project]`) and all libraries upon which it depends if you have not already done so.
- * In the command prompt:
-  * cd to the `[tested_project]Test` folder.
-  * Execute "ant test"
-  * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures.
+At the command prompt:
+ * cd to the `[tested_project]Test` folder.
+ * Execute "ant test"
+ * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures.
 
 ====  Automated Mode In Mozilla ====
 
@@ -326,6 +330,12 @@ If you'd like to run your tests in Firefox, simply set the following properties 
 mozilla.browser.executable=C:/Apps/Firefox/firefox.exe
 arc-flexunit2.using.mozilla=true
 }}}
+
+Then execute "ant test" as described above.
+
+==== More Advanced Automated Testing Options ====
+
+#################
 
 ====  Automated Mode In AIR ====
 
@@ -339,7 +349,7 @@ If you've run your tests on a different platform from that in which their baseli
 
 ===  Step 6: Using VFU's SWF-Based GUI ===
 
- * Open a command prompt and cd to the `[tested_project]` folder.
+ * Open a command prompt and cd to the `[tested_project]Test` folder.
  * Execute this command:
        `ant test-swf-gui`
  * This will clean your build directory, compile the SWF GUI, and run it. The SWF GUI is essentially the same as the AIR GUI with these exceptions:
