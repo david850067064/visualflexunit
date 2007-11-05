@@ -99,16 +99,16 @@ The downloadable visualflexunit.zip file unzips into this folder hierarchy:
         vfuexample              - project containing example components
         vfuexampleTest          - example visual test project
         visualflexunit          - Visual FlexUnit source code
-        visualflexunitTest      - contains unit tests for Visual FlexUnit code
+        visualflexunitTest      - unit tests for Visual FlexUnit code
  }}}
 
 === Example Projects ===
 
-We've included two example projects: 
- * `/dev/vfu/vfuexample/   ` - An example project that contains several simple visual components, which we test with...
- * `/dev/vfu/vfuexampleTest` - An example test project that contains all the functionality described in Step 1 for bootstrapped projects, plus:
-  * Fully implemented test code
-  * Fully implemented Ant code that wires the test project into the build process
+We've included two example projects in `/dev/vfu/vfuexample/` and `/dev/vfu/vfuexampleTest`. 
+
+!vfuexampleTest is a VFU enabled test project that tests visual components in vfuexample. It contains all the functionality described in Step 1 for bootstrapped projects, plus:
+  * Fully implemented test code. You can refer to this when implementing Step 2.
+  * Fully implemented Ant code that wires the test project into the build process. You'll want to refer to this when implementing Step 4.
 
 ===  Step 1: Bootstrapping a Visual Test Project ===
 
