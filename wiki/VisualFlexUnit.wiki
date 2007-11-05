@@ -123,9 +123,9 @@ The downloadable visualflexunit.zip file unzips into this folder hierarchy:
   }}}
   
   Throughout these instructions we use these conventions:
-    * *[uber_project]* - `foo` in the example above
-    * *[tested_project]* - `bar` in the example above
-    * *[tested_project]Test* - `barTest` in the example above
+    * *[!uber_project]* - `foo` in the example above
+    * *[!tested_project]* - `bar` in the example above
+    * *[!tested_project]Test* - `barTest` in the example above
  
  
 
