@@ -1,0 +1,24 @@
+#summary Visual !FlexUnit's build process.
+
+= Visual !FlexUnit's Build Process =
+
+== "Modified Antennae" ==
+
+Visual !FlexUnit's build process is derived from [http://code.google.com/p/antennae/ Antennae], another of [http://www.allurent.com Allurent]'s open source contributions to the Flex community.
+
+=== Simplifications and Clarifications ===
+
+We've made a few changes to the Antennae's approach for the sake of simplicity and to make it easier for those new to Ant and Antennae to absorb VFU's build process. These include:
+ * Rather than using a `/flex2/` folder for source code, we use `/src/`.
+ * Rather than using a `/test/flexunit2/` folder for test projects' source code, we use `/src/`.
+ * Rather than using a `/build/` folder, we use `/bin/`.
+ * We've replaced the string "flex2" in our Ant target names with "flex".
+ * We've named our dev root folder `/dev/` rather than `/Antennae/`.
+
+While this will hopefully make VFU's build process easier to absorb, we realize that it will also make it harder for you to combine VFU with an Antennae based build system. Hopefully these notes will make that process a bit easier, should you choose to embark upon it.
+
+=== Additions ===
+
+We've also added some VFU specific targets to `/dev/tools/build-common-targets.xml`. Hopefully these will find their way into Antennae at some point.
+
+
