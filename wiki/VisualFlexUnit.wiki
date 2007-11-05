@@ -102,6 +102,32 @@ The downloadable visualflexunit.zip file unzips into this folder hierarchy:
         visualflexunit          - Visual FlexUnit source code
         visualflexunitTest      - unit tests for Visual FlexUnit code
  }}}
+ 
+ These instructions assume that you'll be using a folder structure similar to that demonstrated by `/vfu/` and its subfolders, i.e. that you'll have an uber project folder (`/vfu/` in this case) which contains your 'tested project' and 'test project' folders.
+ 
+ For example, if your uber project is named 'foo' and your tested project is name 'bar' you'd have:
+ {{{
+   visualflexunit
+     dev
+       arc-flexunit2
+       flexunit     
+       foo
+         bar
+         barTest
+       tools        
+       vfu
+         vfuexample 
+         vfuexampleTest
+         visualflexunit
+         visualflexunitTest
+  }}}
+  
+  Throughout these instructions we use these conventions:
+    *[uber_project]* - `foo` in the example above
+    *[tested_project]* - `bar` in the example above
+    *[tested_project]Test* - `barTest` in the example above
+ 
+ 
 
 === Example Projects ===
 
@@ -125,21 +151,20 @@ Assumptions:
 We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. (If you have sufficient Flex and Ant knowledge you can work around these, e.g. compiling your AIR GUI test app from the command line, but we don't cover such scenarios here.)
  * You have Ant 1.6.5 or newer installed.
  * You have !FlexBuilder 3.0 installed and are at least somewhat familiar with it.
- * The folder for the project you are testing is in a sub-subfolder of /dev/. Example: `/dev/sub_folder/project_name`. Throughout these instructions we'll be using `sub_folder` and `project_name` to represent these folder names.
- * As you will be creating a `/dev/sub_folder/[project_name]Test/` test project folder by running the Ant bootstrap process specified below, we assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
+ * As you will be creating a `/dev/[uber_project]/[tested_project]Test/` test project folder by running the Ant bootstrap process specified below, we assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
 
 Steps:
 
- * If a `/dev/sub_folder/[project_name]Test/` test project folder already exists, delete or rename it.
- * Open a command prompt and cd to `sub_folder`.
+ * If a `/dev/[uber_project]/[tested_project]Test/` test project folder already exists, delete or rename it.
+ * Open a command prompt and cd to the `[uber_project]` folder.
  * Execute this command:
-         `ant -Dproject="project_name" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/testprojecttemplate/build.xml bootstrap-visual-test-project`
- * Confirm that this has in fact created a new "`[project_name]Test`" folder inside `sub_folder`.
+         `ant -Dproject="[tested_project]" -f [your_path_to_dev]/dev/vfu/visualflexunit/template/testprojecttemplate/build.xml bootstrap-visual-test-project`
+ * Confirm that this has in fact created a new "`[tested_project]Test`" folder inside the `[uber_project]` folder.
  * Open Eclipse.
  * Ensure that you have an Eclipse path variable named `DEV_ROOT` that is set to the location of the `/dev/` folder. (You set this at Windows | Preferences | General | Workspace | Linked Resources.)
- * Import the "`[project_name]Test`" folder as an Eclipse project into Eclipse.
- * Modify `/[project_name]Test/test/flexunit2/skinning/styles.css` as appropriate. You'll find explanatory comments in the file to guide you.
- * If you embed fonts in styles.css, put the font resource files into `/[project_name]Test/test/flexunit2/skinning/fonts/`
+ * Import the "`[tested_project]Test`" folder as an Eclipse project into Eclipse.
+ * Modify `/[tested_project]Test/test/flexunit2/skinning/styles.css` as appropriate. You'll find explanatory comments in the file to guide you.
+ * If you embed fonts in styles.css, put the font resource files into `/[tested_project]Test/test/flexunit2/skinning/fonts/`
  * You're now ready to start writing your test classes.
 
 ===  Step 2: Writing Visual Tests ===
@@ -192,7 +217,7 @@ In case you're curious, here's a quick overview of what is going on under the ho
 
 ====  C. Add your test class to !VfuGuiFlexUnitAllTests.as ====
 
-Open `/[project_name]Test/test/flexunit2/VfuGuiFlexUnitAllTests.as` and follow the instructions in the file.
+Open `/[tested_project]Test/test/flexunit2/VfuGuiFlexUnitAllTests.as` and follow the instructions in the file.
 
 You're now ready to run your tests!
 
@@ -222,11 +247,9 @@ When these occur your best first step is probably to click the Open Diff Viewer 
 
 ==== Conventions ====
 
-We'll continue to use the conventions introduced in Step 1, i.e. we use *project_name* to represent your tested project's name, and *sub_folder* to represent the intermediate folder between `/dev/` and your project's folder.
+We'll continue to use the conventions introduced in Step 1, i.e. we use *[tested_project]* to represent your tested project's name, and *[uber_project]* to represent the intermediate folder between `/dev/` and your project's folder.
 
-We'll also use *tested project* to refer to the project_name project and *test project* to refer to the [project_name]Test project.
-
-(For the purposes of these instructions *project_name* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
+(For the purposes of these instructions *[tested_project]* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
 
 ==== build-user.properties ====
 
@@ -236,21 +259,21 @@ We'll also use *tested project* to refer to the project_name project and *test p
 
 This file informs the build process of the location of the tested project's SWC. These instructions assume that it's placed in a `/bin/` subfolder. If your SWC's location is different, modify the path accordingly.
 
- * Copy `/dev/vfu/vfuexample/build-assets.xml` to `/dev/[sub_folder]/[project_name]/build-assets.xml`
- * Replace all instances of `"vfuexample"` with `"[project_name]"`.
- * Replace one instance of `"/vfu/"` with `"[sub_folder]"`.
+ * Copy `/dev/vfu/vfuexample/build-assets.xml` to `/dev/[uber_project]/[tested_project]/build-assets.xml`
+ * Replace all instances of `"vfuexample"` with `"[tested_project]"`.
+ * Replace one instance of `"/vfu/"` with `"[uber_project]"`.
 
 ==== Tested Project's build.xml & build-imports.xml ====
 
 You no doubt noticed these files while copying build-assets.xml. You don't need these files for the task at hand, but might find them interesting if you'd like to automate the build process for your tested project.
 
-==== /dev/[sub_folder]/build-assets.xml ====
+==== /dev/[uber_project]/build-assets.xml ====
 
 This file wires you tested project's build-assets.xml file into the build process.
 
- * Copy `/dev/vfu/build-assets.xml` to `/dev/[sub_folder]/build-assets.xml`.
+ * Copy `/dev/vfu/build-assets.xml` to `/dev/[uber_project]/build-assets.xml`.
  * Delete one of the import lines.
- * Edit the other one so that it reads `"<import file="[project_name]/build-assets.xml"/>"`.
+ * Edit the other one so that it reads `"<import file="[tested_project]/build-assets.xml"/>"`.
  
 ====  ==== 
 
@@ -261,9 +284,9 @@ Also, you've already run your test project in AIR GUI mode and created your base
 
 ====  Automated Mode In Flash Player ====
 
- * Compile the project that you are testing (`project_name`) and all libraries upon which it depends if you have not already done so.
+ * Compile the project that you are testing (`[tested_project]`) and all libraries upon which it depends if you have not already done so.
  * In the command prompt:
-  * cd to the `[project_name]Test` folder.
+  * cd to the `[tested_project]Test` folder.
   * Execute "ant test"
   * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures.
 
@@ -288,7 +311,7 @@ If you've run your tests on a different platform from that in which their baseli
 
 ===  Step 6: Using VFU's SWF-Based GUI ===
 
- * Open a command prompt and cd to the `project_name` folder.
+ * Open a command prompt and cd to the `[tested_project]` folder.
  * Execute this command:
        `ant test-swf-gui`
  * This will clean your build directory, compile the SWF GUI, and run it. The SWF GUI is essentially the same as the AIR GUI with these exceptions:
