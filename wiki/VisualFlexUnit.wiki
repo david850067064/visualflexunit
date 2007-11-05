@@ -103,10 +103,10 @@ The downloadable visualflexunit.zip file unzips into this folder hierarchy:
         visualflexunitTest      - unit tests for Visual FlexUnit code
  }}}
  
- These instructions assume that you'll be using a folder structure similar to that demonstrated by `/vfu/` and its subfolders, i.e. that you'll have an uber project folder (`/vfu/` in this case) which contains your 'tested project' and 'test project' folders.
+These instructions assume that you'll be using a folder structure similar to that demonstrated by `/vfu/` and its subfolders, i.e. that you'll have an uber project folder (`/vfu/` in this case) which contains your 'tested project' and 'test project' folders.
  
- For example, if your uber project is named 'foo' and your tested project is name 'bar' you'd have:
- {{{
+For example, if your uber project is named 'foo' and your tested project is name 'bar' you'd have:
+{{{
    visualflexunit
      dev
        arc-flexunit2
@@ -122,10 +122,10 @@ The downloadable visualflexunit.zip file unzips into this folder hierarchy:
          visualflexunitTest
   }}}
   
-  Throughout these instructions we use these conventions:
-    * *[!uber_project]* - `foo` in the example above
-    * *[!tested_project]* - `bar` in the example above
-    * *[!tested_project]Test* - `barTest` in the example above
+Throughout these instructions we use these conventions:
+ * *[!uber_project]* - `foo` in the example above
+ * *[!tested_project]* - `bar` in the example above
+ * *[!tested_project]Test* - `barTest` in the example above
  
  
 
