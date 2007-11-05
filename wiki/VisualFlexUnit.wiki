@@ -102,20 +102,20 @@ The downloadable visualflexunit.zip file unzips into this folder hierarchy:
         visualflexunitTest      - contains unit tests for Visual FlexUnit code
  }}}
 
+=== Example Projects ===
+
+We've included two example projects: 
+ * `/dev/vfu/vfuexample/   ` - An example project that contains several simple visual components, which we test with...
+ * `/dev/vfu/vfuexampleTest` - An example test project that contains all the functionality described in Step 1 for bootstrapped projects, plus:
+  * Fully implemented test code
+  * Fully implemented Ant code that wires the test project into the build process
+
 ===  Step 1: Bootstrapping a Visual Test Project ===
 
 The Visual !FlexUnit download includes Ant scripts that will allow you to bootstrap a test project for a project that you've created that contains visual content. Bootstrapping includes:
  * Creation of a folder hierarchy for your project.
  * Creation of !FlexBuilder project files, so that the project can be imported into Eclipse.
  * Creation of framework code files including GUI App files, a CSS file, Ant files, etc.
-
-We also include two example projects: 
- * `/dev/vfu/vfuexample/   ` - An example project that contains several simple visual components, which we test with...
- * `/dev/vfu/vfuexampleTest` - An example test project that contains all the functionality described above for bootstrapped projects, plus:
-  * Fully implemented test code
-  * Fully implemented Ant code that wires the test project into the build process
-
-Hopefully, you'll find that the bootstrap process combined with the instructions below will make it easy for you to create visual test projects. If you get stuck you can use the vfuexampleTest project as a reference.
 
 ==== Bootstrap How-To ====
 
