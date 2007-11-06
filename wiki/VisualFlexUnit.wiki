@@ -5,7 +5,7 @@
 ===  Note: (2007.11.02) This is a rough draft of Visual !FlexUnit's documentation. Visual !FlexUnit has not yet been released to the public. We hope to do so soon. ===
 
 Contributors:
- * [http://www.brightworks.com/flex_ability Douglas !McCarroll]
+ * [http://www.brightworks.com/flex_ability Douglas McCarroll]
  * [http://www.joeberkovitz.com Joe Berkovitz]
  * Marty Frenzel
  * [http://www.timwalling.com Tim Walling]
