@@ -168,6 +168,8 @@ Steps:
 
 ===  Step 2: Writing Visual Tests ===
 
+Before you start this process you'll need to decide which visual components you'd like to test. If you're just starting to explore VFU and don't have any components that you'd like to test you can either use standard flex components or copy the `/dev/vfu/vfuexample/src/ folder we're provided into your own project. Just don't name your project `vfuexample` - the build process requires unique names!
+
 ====  A. Create A New Test Class ====
 
 Instead of subclassing `TestCase` (the standard !FlexUnit approach) subclass `com.allurent.flexunit2.vfu.framework.VfuTestCase`.
@@ -321,6 +323,8 @@ At the command prompt:
  * cd to the `[tested_project]Test` folder.
  * Execute "ant test"
  * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures.
+
+(If you're testing the example test components that we provide in `vfuexample` you'll find that there is one test that reliably fails at this point. The testCanvas_2() test method tests a component that consists of buttons on a canvas. We've specified drop shadows for the buttons that have fairly bizarre property settings. One of these buttons renders differently across the AIR/SWF divide. We suggest that you re-run the tests in the SWF GUI, as explained below, and take a look with the diff viewer.)
 
 ====  Automated Mode In Mozilla ====
 
