@@ -168,7 +168,10 @@ Steps:
 
 ===  Step 2: Writing Visual Tests ===
 
-Before you start this process you'll need to decide which visual components you'd like to test. If you're just starting to explore VFU and don't have any components that you'd like to test you can either use standard flex components or copy the `/dev/vfu/vfuexample/src/ folder we're provided into your own project. Just don't name your project `vfuexample` - the build process requires unique names!
+Before you start this process you'll need to decide which visual components you'd like to test. Your options include:
+ * Use standard Flex components
+ * Use your own custom components
+ * Copy the `/dev/vfu/vfuexample/src/` folder into your own project. This contains three simple custom components, on of which fails in interesting ways.
 
 ====  A. Create A New Test Class ====
 
