@@ -299,7 +299,7 @@ The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files
 
  * Change the project's name attribute from `"vfu.imports"` to `"[uber_project].imports"`.
 
-===== 4.4.2 /dev/[uber_project]/build.xml =====
+===== 4.4.2 /dev/`[uber_project]`/build.xml =====
 
 This step is optional. If desired, you can create a build file for the uber project that will build both tested and test projects, then run the test project's tests. To do this:
 
@@ -322,8 +322,9 @@ This is another optional step. The `/dev/build.xml` file does the same thing as 
 
 We assume that you have done the following:
 
+ * You've followed the steps outlined in Step 4.
  * You've run your test project in AIR GUI mode and created your baselines as explained above.
- * Compiled `[tested_project]` and all libraries upon which it depends.
+ * You've compiled `[tested_project]` and all libraries upon which it depends.
 
 ====  Automated Mode In Flash Player ====
 
@@ -336,18 +337,24 @@ At the command prompt:
 
 ====  Automated Mode In Mozilla ====
 
-If you'd like to run your tests in Firefox, simply set the following properties in your dev/build-user.properties file:
+If you'd like to run your tests in Firefox, follow these steps:
+ * Add this code to your `/dev/build-user.properties` file:
 {{{
-# adjust browser location to suit your local system
-mozilla.browser.executable=C:/Apps/Firefox/firefox.exe
-arc-flexunit2.using.mozilla=true
+    mozilla.browser.executable=C:/Apps/Firefox/firefox.exe
+    arc-flexunit2.using.mozilla=true
 }}}
+ * Adjust browser executable's location to suit your local system
+ * Execute "ant test" as described above
 
-Then execute "ant test" as described above.
+==== More Work For Extra Credit :) ====
 
-==== More Advanced Automated Testing Options ====
+In an ideal world you'll be running a one click automated build process that builds and tests all of your projects. We've included a working build process for the entire `/dev/` folder in the VFU download. The steps needed to wire your test project into this process have either been listed as optional steps or at least hinted at (4.2.1's side note). Also, the framework for including sub-projects is modeled in the `/dev/vfu/` folder.
 
-#################
+Your mission, should you choose to accept it, is to wire your projects into the process. To test this:
+ * At the command prompt, cd to the `/dev/` folder
+ * Execute `ant all`
+
+Good luck! :)
 
 ====  Automated Mode In AIR ====
 
