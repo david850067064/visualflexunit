@@ -258,7 +258,7 @@ This section outlines a series of steps that you can take to connect your visual
 
 ==== Conventions ====
 
-We'll continue to use the conventions introduced in Step 1 here.  (i.e. we use *`[tested_project]`* to represent your tested project's name, and *`[uber_project]`* to represent the intermediate folder between `/dev/` and your project's folder)
+We'll continue to use the conventions introduced in Step 1 here, i.e. we use *`[tested_project]`* to represent your tested project's name, and *`[uber_project]`* to represent the intermediate folder between `/dev/` and your project's folder.
 
 (For the purposes of these instructions *`[tested_project]`* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
 
@@ -270,11 +270,12 @@ We'll continue to use the conventions introduced in Step 1 here.  (i.e. we use *
 
 ===== 4.2.1 Tested Project's build-assets.xml =====
 
-This file informs the build process of the location of the tested project's SWC. These instructions assume that it's placed in a `/[tested_project]/bin/` subfolder. If your SWC's location is different, modify the path accordingly.
+This file informs the build process of the location of the tested project's SWC. 
 
  * Copy `/dev/vfu/vfuexample/build-assets.xml` to `/dev/[uber_project]/[tested_project]/build-assets.xml` and open the copy.
  * Replace all instances of `"vfuexample"` with `"[tested_project]"`.
  * Replace one instance of `"/vfu/"` with `"/[uber_project]/"`.
+ * These instructions assume that the tested project's SWC is placed in a `/[tested_project]/bin/` subfolder. If your SWC's location is different, modify the path accordingly.
 
 Side Note: You probably noticed `/dev/vfu/vfuexample/build.xml` and `/dev/vfu/vfuexample/build-imports.xml` while copying build-assets.xml. You don't need these files for the task at hand, but might find them interesting if you'd like to automate the build process for your tested project.
 
@@ -286,8 +287,8 @@ These files wire your tested project's build-assets.xml file into the build proc
  * Change the project's name attribute from `"vfu.assets"` to `"[uber_project].assets"`.
   * Delete one of the import lines.
   * Edit the other import line so that it reads `"<import file="[tested_project]/build-assets.xml"/>"`.
- * Optional for our current purposes, but good form: In `/dev/build-assets.xml`:
-  * Add an import line that says `"<import file="[uber_project]/build-assets.xml"/>"`.
+ * Optional for our current purposes, but good form: 
+  * In `/dev/build-assets.xml` add an import line that says `"<import file="[uber_project]/build-assets.xml"/>"`.
  
 ==== 4.3 The Test Project's Build Files ==== 
 
@@ -297,6 +298,7 @@ The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files
 
 ===== 4.4.1 /dev/`[uber_project]`/build-imports.xml =====
 
+ * Copy `/dev/vfu/build-imports.xml` to `/dev/[uber_project]/build-imports.xml` and open the copy.
  * Change the project's name attribute from `"vfu.imports"` to `"[uber_project].imports"`.
 
 ===== 4.4.2 /dev/`[uber_project]`/build.xml =====
@@ -348,7 +350,7 @@ If you'd like to run your tests in Firefox, follow these steps:
 
 ==== More Work For Extra Credit :) ====
 
-In an ideal world you'll be running a one click automated build process that builds and tests all of your projects. We've included a working build process for the entire `/dev/` folder in the VFU download. The steps needed to wire your test project into this process have either been listed as optional steps or at least hinted at (4.2.1's side note). Also, the framework for including sub-projects is modeled in the `/dev/vfu/` folder.
+In an ideal world you'll be running a one click automated build process that builds and tests all of your projects. We've included a working build process for the entire `/dev/` folder in the VFU download. The steps needed to wire your test project into this process have either been listed as optional steps or at least hinted at (4.2.1's side note) in Step 4. Also, the framework for including sub-projects is modeled in the `/dev/vfu/` folder.
 
 Your mission, should you choose to accept it, is to wire your projects into the process. To test this:
  * At the command prompt, cd to the `/dev/` folder
