@@ -249,15 +249,18 @@ When these occur your best first step is probably to click the Open Diff Viewer 
 
 ===  Step 4: Connecting to VFU's Build Process ===
 
+==== Visual !FlexUnit's Build Process ====
+
+This section outlines a series of steps that you can take to connect your visual test project to the Ant-based build process that we include as part of the VFU download. We don't attempt to explain how the build process works as that's outside of the scope of this project, but if you're interested in learning more, here are some resources:
+ * The Apache Ant project: http://ant.apache.org/  In particular, follow the Manual link on the left side of the page.
+ * At risk of stating the obvious, take a look at the build files themselves. We've tried to include comments where they'd be helpful.
+ * You can find more details on VFU's build process at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess VFU's build process wiki page].
+
 ==== Conventions ====
 
 We'll continue to use the conventions introduced in Step 1 here.  (i.e. we use *`[tested_project]`* to represent your tested project's name, and *`[uber_project]`* to represent the intermediate folder between `/dev/` and your project's folder)
 
 (For the purposes of these instructions *`[tested_project]`* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
-
-==== Visual !FlexUnit's Build Process ====
-
-If you're seriously interested in automated build processes you can find more details on VFU's build process at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess VFU's build process wiki page].
 
 ==== build-user.properties ====
 
