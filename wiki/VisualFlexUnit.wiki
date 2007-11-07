@@ -262,13 +262,13 @@ We'll continue to use the conventions introduced in Step 1 here.  (i.e. we use *
 
 (For the purposes of these instructions *`[tested_project]`* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
 
-==== build-user.properties ====
+==== 4.1 Setting User-Specific Settings ====
 
  * Open `/dev/build-user.properties` and modify the settings as needed.
  
-==== Wiring The Tested Project's SWC Into The Process ==== 
+==== 4.2 Wiring The Tested Project's SWC Into The Process ==== 
 
-===== Tested Project's build-assets.xml =====
+===== 4.2.1 Tested Project's build-assets.xml =====
 
 This file informs the build process of the location of the tested project's SWC. These instructions assume that it's placed in a `/[tested_project]/bin/` subfolder. If your SWC's location is different, modify the path accordingly.
 
@@ -278,7 +278,7 @@ This file informs the build process of the location of the tested project's SWC.
 
 Side Note: You probably noticed `/dev/vfu/vfuexample/build.xml` and `/dev/vfu/vfuexample/build-imports.xml` while copying build-assets.xml. You don't need these files for the task at hand, but might find them interesting if you'd like to automate the build process for your tested project.
 
-===== /dev/[uber_project]/build-assets.xml and /dev/build-assets.xml =====
+===== 4.2.2 /dev/[uber_project]/build-assets.xml and /dev/build-assets.xml =====
 
 These files wire your tested project's build-assets.xml file into the build process.
 
@@ -289,17 +289,17 @@ These files wire your tested project's build-assets.xml file into the build proc
  * Optional for our current purposes, but good form: In `/dev/build-assets.xml`:
   * Add an import line that says `"<import file="[uber_project]/build-assets.xml"/>"`.
  
-==== Test Project's Build Files ==== 
+==== 4.3 The Test Project's Build Files ==== 
 
-The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files in `/dev/[uber_project]/[tested_project]Test/` These are complete and ready to use. If you want to understand the build process we suggest that you take a look at them, and at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess VFU's build process wiki page].
+The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files in `/dev/[uber_project]/[tested_project]Test/` These are complete and ready to use.
 
-==== Wiring The Process Into The Test Project ====
+==== 4.4 Pulling The Process Into The Test Project ====
 
-===== /dev/[uber_project]/build-imports.xml =====
+===== 4.4.1 /dev/[uber_project]/build-imports.xml =====
 
  * Change the project's name attribute from `"vfu.imports"` to `"[uber_project].imports"`.
 
-===== /dev/[uber_project]/build.xml =====
+===== 4.4.2 /dev/[uber_project]/build.xml =====
 
 This step is optional. If desired, you can create a build file for the uber project that will build both tested and test projects, then run the test project's tests. To do this:
 
@@ -309,7 +309,7 @@ This step is optional. If desired, you can create a build file for the uber proj
   * Delete all lines that include `visualflexunit` or `visualflexunitTest`.
   * Replace all instances of `"vfuexample"` with `[tested_project]`.
  
-===== /dev/build.xml =====
+===== 4.4.3 /dev/build.xml =====
 
 This is another optional step. The `/dev/build.xml` file does the same thing as `/dev/[uber_project]/build.xml`, but for the entire build process. If you'd like `[uber_project]` to be included when we tell the build process "build and test everything" follow these steps:
  * Open `/dev/build.xml`.
