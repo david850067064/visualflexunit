@@ -278,7 +278,7 @@ This file informs the build process of the location of the tested project's SWC.
 
 Side Note: You probably noticed `/dev/vfu/vfuexample/build.xml` and `/dev/vfu/vfuexample/build-imports.xml` while copying build-assets.xml. You don't need these files for the task at hand, but might find them interesting if you'd like to automate the build process for your tested project.
 
-===== 4.2.2 /dev/[uber_project]/build-assets.xml and /dev/build-assets.xml =====
+===== 4.2.2 Parent Folders' build-assets.xml Files =====
 
 These files wire your tested project's build-assets.xml file into the build process.
 
@@ -295,7 +295,7 @@ The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files
 
 ==== 4.4 Pulling The Process Into The Test Project ====
 
-===== 4.4.1 /dev/[uber_project]/build-imports.xml =====
+===== 4.4.1 /dev/`[uber_project]`/build-imports.xml =====
 
  * Change the project's name attribute from `"vfu.imports"` to `"[uber_project].imports"`.
 
