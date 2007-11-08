@@ -132,7 +132,9 @@ For example, if your uber project is named 'foo' and your tested project is name
 
 === Example Projects ===
 
-We've included two example projects in `/dev/vfu/`. `vfuexampleTest` is a VFU enabled test project that tests visual components in `vfuexample`. It contains all the functionality described in Step 1 for bootstrapped projects, plus:
+We've included two example projects in `/dev/vfu/`: 
+ * `vfuexample` is an example projects that contains several simple custom components.
+ * `vfuexampleTest` is a VFU enabled test project that tests the visual components in `vfuexample`. It contains all the functionality described in Step 1 for bootstrapped projects, plus:
   * Fully implemented VFU test code. You can refer to this when implementing Step 2.
   * Fully implemented Ant code that wires the test project into the build process. You'll want to refer to this when implementing Step 4.
 
@@ -251,7 +253,7 @@ When these occur your best first step is probably to click the Open Diff Viewer 
 
 ==== Visual !FlexUnit's Build Process ====
 
-This section outlines a series of steps that you can take to connect your visual test project to the Ant-based build process that we include as part of the VFU download. We don't attempt to explain how the build process works as that's outside of the scope of this project, but if you're interested in learning more, here are some resources:
+This section outlines a series of steps that you can take to connect your visual test project to the Ant-based build process that we include as part of the VFU download. We don't attempt here to explain how the build process works as that's outside of the scope of this project, but if you're interested in learning more, here are some resources:
  * The Apache Ant project: http://ant.apache.org/  In particular, follow the Manual link on the left side of the page.
  * At risk of stating the obvious, take a look at the build files themselves. We've tried to include comments where they'd be helpful.
  * You can find more details on VFU's build process at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess VFU's build process wiki page].
@@ -277,8 +279,6 @@ This file informs the build process of the location of the tested project's SWC.
  * Replace one instance of `"/vfu/"` with `"/[uber_project]/"`.
  * These instructions assume that the tested project's SWC is placed in a `/[tested_project]/bin/` subfolder. If your SWC's location is different, modify the path accordingly.
 
-Side Note: You probably noticed `/dev/vfu/vfuexample/build.xml` and `/dev/vfu/vfuexample/build-imports.xml` while copying build-assets.xml. You don't need these files for the task at hand, but might find them interesting if you'd like to automate the build process for your tested project.
-
 ===== 4.2.2 Parent Folders' build-assets.xml Files =====
 
 These files wire your tested project's build-assets.xml file into the build process.
@@ -292,18 +292,33 @@ These files wire your tested project's build-assets.xml file into the build proc
  
 ==== 4.3 The Test Project's Build Files ==== 
 
-The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files in `/dev/[uber_project]/[tested_project]Test/` These are complete and ready to use.
+The bootstrap process (Step 1) created `build.xml` and `build-imports.xml` files in `/dev/[uber_project]/[tested_project]Test/`. These are complete and ready to use.
 
-==== 4.4 Pulling The Process Into The Test Project ====
+==== 4.4 The Tested Project's Build Files ==== 
 
-===== 4.4.1 /dev/`[uber_project]`/build-imports.xml =====
+Optional. If you'd like to include your tested project in the build process, follow these steps:
+
+ * Copy `build.xml` and `build-imports.xml` from `/dev/vfu/vfuexample/` to `/dev/[uber_project]/[tested_project]/`.
+ * Open `build.xml`.
+  * Change the project's name attribute from `vfuexample` to `[project_name]`.
+  * If your project needs to include any libraries in its build path, you'll need to include them in the projects flex.lib.path path structure. This requires several steps:
+   * `vfuexample` doesn't require any libraries so take a look at `/dev/vfu/visualflexunit/build.xml` to see how libraries are included in flex.lib.path.
+   * You'll notice that we don't include hard-coded paths. Instead we use properties. To see how these are set,  review sub-step 4.2. This process needs to be implemented for all libraries.
+ * `build-imports.xml` will usually work without modifications. If you are using folders other than `/project_name/src/` and `/project_name/bin/` as your source and build directories, you'll need to override some default Ant property settings here.
+  * The `src.flex.dir` property is set to a default value of `"src"` in `/dev/tools/build-common-properties.xml`.
+  * The `build.dir` property is set to a default value of `"bin"` in the same file.
+  * You can override these by adding a line like this to this file: `"<property name="src.flex.dir" value="src/flex" />"`
+
+==== 4.5 Pulling The Process Into The Test Project ====
+
+===== 4.5.1 /dev/`[uber_project]`/build-imports.xml =====
 
  * Copy `/dev/vfu/build-imports.xml` to `/dev/[uber_project]/build-imports.xml` and open the copy.
  * Change the project's name attribute from `"vfu.imports"` to `"[uber_project].imports"`.
 
-===== 4.4.2 /dev/`[uber_project]`/build.xml =====
+===== 4.5.2 /dev/`[uber_project]`/build.xml =====
 
-This step is optional. If desired, you can create a build file for the uber project that will build both tested and test projects, then run the test project's tests. To do this:
+Optional. If desired, you can create a build file for the uber project that will build both tested and test projects, then run the test project's tests. To do this:
 
  * Copy `/dev/vfu/build.xml` to `/dev/[uber_project]/build.xml` and open the copy.
  * In the first line change the project's name from `vfu` to `[uber_project]`.
@@ -311,9 +326,9 @@ This step is optional. If desired, you can create a build file for the uber proj
   * Delete all lines that include `visualflexunit` or `visualflexunitTest`.
   * Replace all instances of `"vfuexample"` with `[tested_project]`.
  
-===== 4.4.3 /dev/build.xml =====
+===== 4.5.3 /dev/build.xml =====
 
-This is another optional step. The `/dev/build.xml` file does the same thing as `/dev/[uber_project]/build.xml`, but for the entire build process. If you'd like `[uber_project]` to be included when we tell the build process "build and test everything" follow these steps:
+Optional. The `/dev/build.xml` file does the same thing as `/dev/[uber_project]/build.xml`, but for the entire build process. If you'd like `[uber_project]` to be included when we tell the build process "build and test everything" follow these steps:
  * Open `/dev/build.xml`.
  * Observe the `clean`, `build` and `test` targets.
  * In each target copy the line for the vfu uber project, and create a line under it which is identical, except that it says `"[uber_project]"` rather than `"vfu"`.
@@ -350,9 +365,9 @@ If you'd like to run your tests in Firefox, follow these steps:
 
 ==== More Work For Extra Credit :) ====
 
-In an ideal world you'll be running a one click automated build process that builds and tests all of your projects. We've included a working build process for the entire `/dev/` folder in the VFU download. The steps needed to wire your test project into this process have either been listed as optional steps or at least hinted at (4.2.1's side note) in Step 4. Also, the framework for including sub-projects is modeled in the `/dev/vfu/` folder.
+In an ideal world you'll be running a one click automated build process that builds and tests all of your projects. We've included a working build process for the entire `/dev/` folder in the VFU download. The steps needed to wire both your tested project and test project into this process have been listed in Step 4. Also, the framework for including sub-projects is modeled in the `/dev/vfu/` folder.
 
-Your mission, should you choose to accept it, is to wire your projects into the process. To test this:
+Your mission, should you choose to accept it, is to wire your projects into the process. To test the process:
  * At the command prompt, cd to the `/dev/` folder
  * Execute `ant all`
 
