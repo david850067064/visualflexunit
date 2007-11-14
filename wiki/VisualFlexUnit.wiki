@@ -14,9 +14,9 @@ Contributors:
 
 Visual !FlexUnit is an [http://www.allurent.com Allurent] open source project. Its goal is to establish a framework for the testing of components' visual appearance by enhancing [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
 
-For the present VFU should be considered an experiment in progress. While it's now reaching the point where it's a practical and useful tool, it's also a bit like a toddler who is just taking baby steps. Simply stated, we don't have enough experience working with it to know where tweaks will be required. So, if your visual tests fail when you think they should be passing, this may simply be an indication that VFU needs to be tweaked. Please be in touch if you think that this may be the case.
+For the present VFU should be considered an experiment in progress. While it's now reaching the point where it's a practical and useful tool, it's also a bit like a toddler who is just taking baby steps. Simply stated, we don't have enough experience working with it to know where tweaks will be required. So, if your visual tests fail when you think they should be passing, this may simply be an indication that VFU needs to be tweaked. Please [http://code.google.com/p/visualflexunit/issues/list be in touch] if you think that this may be the case.
 
-If any of the explanations or instructions on this page are less than clear we'd be grateful for your feedback.
+If any of the explanations or instructions on this page are less than clear we'd be grateful for your [http://code.google.com/p/visualflexunit/issues/list feedback].
 
 ==  Overview ==
 
@@ -134,9 +134,9 @@ For example, if your uber project is named 'foo' and your tested project is name
 
 We've included two example projects in `/dev/vfu/`: 
  * `vfuexample` is an example projects that contains several simple custom components.
- * `vfuexampleTest` is a VFU enabled test project that tests the visual components in `vfuexample`. It contains all the functionality described in Step 1 for bootstrapped projects, plus:
+ * `vfuexampleTest` is a VFU enabled test project that tests the visual components in `vfuexample`. It contains all the functionality described in Steps 1 and 4 for bootstrapped projects, plus:
   * Fully implemented VFU test code. You can refer to this when implementing Step 2.
-  * Fully implemented Ant code that wires the test project into the build process. You'll want to refer to this when implementing Step 4.
+  * Fully implemented Ant code that wires the test project into the build process. You'll want to refer to this when implementing Step 4 for your own projects.
 
 ===  Step 1: Bootstrapping a Visual Test Project ===
 
@@ -149,7 +149,7 @@ The Visual !FlexUnit download includes Ant scripts that will allow you to bootst
 
 Assumptions:
 
-We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. (If you have sufficient Flex and Ant knowledge you can work around these, e.g. compiling your AIR GUI test app from the command line, but we don't cover such scenarios here.)
+We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. If you have sufficient Flex and Ant knowledge you can work around these, e.g. compiling your AIR GUI test app from the command line, but we don't cover such scenarios here.
  * You have Ant 1.6.5 or newer installed.
  * You have !FlexBuilder 3.0 installed and are at least somewhat familiar with it.
  * As you will be creating a `/dev/[uber_project]/[tested_project]Test/` test project folder by running the Ant bootstrap process specified below, we assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
@@ -212,7 +212,7 @@ As you can see, the example method:
 
 Your visual test methods should follow the same pattern as the example. The action sequence in the second step will generally consist of one or more repetitions (the example has two) of this subsequence:
  * One or more actions that manipulate the component. These can include setting the component's properties, setting its styles, and dispatching mouse and/or keyboard events from it.
- * A refresh. This involves several actions under the hood but essentially allows the component to display fully before its appearance is tested. (You can look at the code for `TestSequenceManager.addRefresh()` if you're curious about the details.)
+ * A refresh. This involves several actions under the hood but essentially allows the component to display fully before its appearance is tested. (Take a look at the code for `TestSequenceManager.addRefresh()` if you're curious about the details.)
  * An assertion that the component's appearance will now match a saved baseline. Note that, in addition to the component instance, we pass in an ID integer to the `addAssertComponentMatchBaseline()` call. This must be unique for each such call within a given method, and is used by VFU to determine the name of the component's baseline file.
 
 See the Visual !FlexUnit ASDocs for `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager` for details on its `add[some_command]()` methods, their parameters, etc. ASDocs can be found at `\dev\vfu\visualflexunit\build\as3doc\index.html`.
@@ -231,11 +231,13 @@ You're now ready to run your tests!
 
 ====  Launching the AIR GUI ====
 
-The Eclipse project that we created above is an AIR project right click your project in the Navigator view and select Run As | Adobe AIR Application, Debug As | Adobe AIR Application.
+The Eclipse project that we created above is an AIR project. Right click your project in the Navigator view and select Run As | Adobe AIR Application or Debug As | Adobe AIR Application.
 
 ====  Viewing Results in the AIR GUI ====
 
-As your tests run you'll see your components appearing and disappearing on the screen. When this stops you'll see a UI that is in some ways similar to !FlexUnit's. The left hand panel has the Failures and All Tests tabs that you've come to know and love. If no failures are displayed, you're all set. Failures for visual tests come in two varieties:
+As your tests run you'll see your components appearing and disappearing on the screen. When this stops you'll see a UI that is in some ways similar to !FlexUnit's. The left hand panel has the Failures and All Tests tabs that you've come to know and love. If no failures are displayed, you're all set. 
+
+Failures for visual tests come in two varieties:
 
 ===== 1. Missing Baseline Failures =====
 
@@ -255,12 +257,12 @@ When these occur your best first step is probably to click the Open Diff Viewer 
 
 This section outlines a series of steps that you can take to connect your visual test project to the Ant-based build process that we include as part of the VFU download. We don't attempt here to explain how the build process works as that's outside of the scope of this project, but if you're interested in learning more, here are some resources:
  * The Apache Ant project: http://ant.apache.org/  In particular, follow the Manual link on the left side of the page.
- * At risk of stating the obvious, take a look at the build files themselves. We've tried to include comments where they'd be helpful.
+ * At risk of stating the obvious, take a look at the build files themselves. We've tried to include comments where they'll be helpful.
  * You can find more details on VFU's build process at [http://code.google.com/p/visualflexunit/wiki/VFUBuildProcess VFU's build process wiki page].
 
 ==== Conventions ====
 
-We'll continue to use the conventions introduced in Step 1 here, i.e. we use *`[tested_project]`* to represent your tested project's name, and *`[uber_project]`* to represent the intermediate folder between `/dev/` and your project's folder.
+We'll continue to use our previously defined conventions here, i.e. we use *`[tested_project]`* to represent your tested project's name, and *`[uber_project]`* to represent the intermediate folder between `/dev/` and your project's folder.
 
 (For the purposes of these instructions *`[tested_project]`* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
 
@@ -350,7 +352,7 @@ At the command prompt:
  * Execute "ant test"
  * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures.
 
-(If you're testing the example test components that we provide in `vfuexample` you'll find that there is one test that reliably fails at this point. The testCanvas_2() test method tests a component that consists of buttons on a canvas. We've specified drop shadows for the buttons that have fairly bizarre property settings. One of these buttons renders differently across the AIR/SWF divide. We suggest that you re-run the tests in the SWF GUI, as explained below, and take a look with the diff viewer.)
+(If you're testing the example test components that we provide in `vfuexample` you'll find that there is one test that reliably fails at this point. The testCanvas_2() test method tests a component that consists of buttons on a canvas. We've specified drop shadows for the buttons, using bizarre property settings for the shadows. One of these buttons renders differently across the AIR/SWF divide. We suggest that you re-run the tests in the SWF GUI, as explained below, and take a look with the diff viewer.)
 
 ====  Automated Mode In Mozilla ====
 
