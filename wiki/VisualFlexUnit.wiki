@@ -14,7 +14,7 @@ Contributors:
 
 Visual !FlexUnit is an [http://www.allurent.com Allurent] open source project. Its goal is to establish a framework for the testing of components' visual appearance by enhancing [http://labs.adobe.com/wiki/index.php/ActionScript_3:resources:apis:libraries#FlexUnit FlexUnit] with additional features to support "visual assertions". In a nutshell, a visual assertion asserts that a component's appearance is identical to a stored baseline image file.
 
-For the present VFU should be considered an experiment in progress. While it's now reaching the point where it's a practical and useful tool, it's also a bit like a toddler who is just taking baby steps. Simply stated, we don't have enough experience working with it to know where tweaks will be required. So, if your visual tests fail when you think they should be passing, this may simply be an indication that VFU needs to be tweaked. Please [http://code.google.com/p/visualflexunit/issues/list be in touch] if you think that this may be the case.
+For the present VFU should be considered an experiment in progress. While it's now reaching the point where it appears to be on its way to being a practical and useful tool, it's also a bit like a toddler who is just taking baby steps. Simply stated, we don't have enough experience working with it to know where tweaks will be required. So, if your visual tests fail when you think they should be passing, this may simply be an indication that VFU needs to be tweaked. Please [http://code.google.com/p/visualflexunit/issues/list be in touch] if you think that this may be the case.
 
 If any of the explanations or instructions on this page are less than clear we'd be grateful for your [http://code.google.com/p/visualflexunit/issues/list feedback].
 
