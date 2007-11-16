@@ -310,7 +310,7 @@ Optional. If you'd like to include your tested project in the build process, fol
   * The `src.flex.dir` property is set to a default value of `"src"` in `/dev/tools/build-common-properties.xml`.
   * The `build.dir` property is set to a default value of `"bin"` in the same file.
   * You can override these by adding a line like this to this file: `"<property name="src.flex.dir" value="src/flex" />"`
-  * Another option is to edit the property settings in `/dev/tools/build-common-properties.xml`. This will modify the setting for all projects so it would break the projects in `/dev/vfu/` in this case, but if you are setting up a build process for your own projects you'll want these values to reflect your standard folder names etc.
+  * Another option is to edit the property settings in `/dev/tools/build-common-properties.xml`. This will modify the setting for all projects so it would break the build process for the projects in `/dev/vfu/` in this case, but if you are setting up a build process for your own projects you'll want these values to reflect your standard folder names etc.
 
 ==== 4.5 Pulling The Process Into The Test Project ====
 
