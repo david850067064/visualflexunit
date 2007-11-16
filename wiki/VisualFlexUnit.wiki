@@ -351,7 +351,7 @@ We assume that you have done the following:
 At the command prompt:
  * cd to the `[tested_project]Test` folder.
  * Execute "ant test"
- * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures.
+ * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures. Also, you should see a "BUILD SUCCESSFUL" message when the build process finishes. A "BUILD-FAILED" message indicates that there's a problem with the build process.
 
 (If you're testing the example test components that we provide in `vfuexample` you'll find that there is one test that reliably fails at this point. The testCanvas_2() test method tests a component that consists of buttons on a canvas. We've specified drop shadows for the buttons, using bizarre property settings for the shadows. One of these buttons renders differently across the AIR/SWF divide. We suggest that you re-run the tests in the SWF GUI, as explained below, and take a look with the diff viewer.)
 
