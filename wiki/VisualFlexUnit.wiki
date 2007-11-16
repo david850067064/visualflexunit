@@ -390,7 +390,7 @@ If you've run your tests on a different platform from that in which their baseli
 
  * Open a command prompt and cd to the `[tested_project]Test` folder.
  * Execute this command:
-       `ant test-swf-gui`
+       `ant swf-gui-all`
  * This will clean your build directory, compile the SWF GUI, and run it. The SWF GUI is essentially the same as the AIR GUI with these exceptions:
   * The app is launched using Ant
   * It runs in Flash Player rather than AIR
