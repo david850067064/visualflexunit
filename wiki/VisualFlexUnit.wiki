@@ -281,7 +281,7 @@ This file informs the build process of the location of the tested project's SWC.
  * Replace one instance of `"/vfu/"` with `"/[uber_project]/"`.
  * These instructions assume that the tested project's SWC is placed in a `/[tested_project]/bin/` subfolder. If your SWC's location is different, modify the path accordingly.
 
-===== 4.2.2 Parent Folders' build-assets.xml Files =====
+===== 4.2.2 Uber Folders' build-assets.xml Files =====
 
 These files wire your tested project's build-assets.xml file into the build process.
 
