@@ -371,7 +371,7 @@ Your mission, should you choose to accept it, is to wire your projects into the 
  * Execute `ant all`
  * Your goal is to see `BUILD SUCCESSFUL` appear in the command prompt window at the end of the process.
 
-Good luck! :)
+Good luck!
 
 ====  If Tests Fail In Automated Mode ====
 
