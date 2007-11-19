@@ -210,9 +210,11 @@ As you can see, the example method:
  * Second, tells `VfuTestCase.testSequence` a sequence of actions that it wants to see happen relative to the component
  * Finally, calls `testSequence.start()`
 
-Clearly, `testSequence` is central to VFU's test process. Here's a quick overview of what `testSequence` is: 
+Clearly, `testSequence` is central to VFU's test process. Here's a quick overview of what `testSequence` is and does: 
 
-`VfuTestCase.testSequence` contains an instance of `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager`. Because much of what we do in the test process involves asynchronous operations, we use `TestSequenceManager` to manage a queue of `TestSequenceCommand` instances. Your test methods tell this manager instance which commands to add to the queue, then tell it to start.
+`VfuTestCase.testSequence` contains an instance of `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager`. Because much of what we do in the test process involves asynchronous operations, we use `TestSequenceManager` to manage a queue of `TestSequenceCommand` instances. Your test methods tell this manager instance which commands to add to the queue, then tell it to start. The command instances perform an operation and, when the operation is asynchronous, wait for it to finish, then inform `TestSequenceManager` that they are done. `TestSequenceManager` then calls then tells the next command to execute, and this process continues until the queue is finished.
+
+The `add...()` calls you see in the example above tell `TestSequenceManager` but there isn't a direct one-to-one relationship between the calls and commands added to the queue; for example `addRefresh()` adds three commands. As mentioned, some of the commands are synchronous (e.g. `SetProperty`) while others (e.g. those created by `addRefresh()`) are asynchronous.
 
 Your visual test methods should follow the same pattern as the example. The action sequence in the second step will generally consist of one or more repetitions (the example has two) of this subsequence:
  * One or more actions that manipulate the component. These can include setting the component's properties, setting its styles, and dispatching mouse and/or keyboard events from it.
