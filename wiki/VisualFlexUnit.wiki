@@ -208,7 +208,9 @@ testMyAccordianComponent():void
 As you can see, the example method:
  * First, instantiates a component
  * Second, tells `VfuTestCase.testSequence` a sequence of actions that it wants to see happen relative to the component
- * Finally, calls start()
+ * Finally, calls `testSequence.start()`
+
+Clearly, `testSequence` is central to VFU's test process. Here's a quick overview of what `testSequence` is: `VfuTestCase.testSequence` contains an instance of `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager`. Because much of what we do in the test process involves asynchronous operations, we use `TestSequenceManager` to manage a queue of `TestSequenceCommand` instances. Your test methods tell this manager instance which commands to add to the queue, then tell it to start.
 
 Your visual test methods should follow the same pattern as the example. The action sequence in the second step will generally consist of one or more repetitions (the example has two) of this subsequence:
  * One or more actions that manipulate the component. These can include setting the component's properties, setting its styles, and dispatching mouse and/or keyboard events from it.
@@ -350,21 +352,10 @@ We assume that you have done the following:
 
 At the command prompt:
  * cd to the `[tested_project]Test` folder.
- * Execute "ant test"
+ * Execute "ant test". This will compile your `[app_project]Test` project, if needed, and run your tests.
  * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures. Also, you should see a "BUILD SUCCESSFUL" message when the build process finishes. A "BUILD-FAILED" message indicates that there's a problem with the build process.
 
 (If you're testing the example test components that we provide in `vfuexample` you'll find that there is one test that reliably fails at this point. The testCanvas_2() test method tests a component that consists of buttons on a canvas. We've specified drop shadows for the buttons, using bizarre property settings for the shadows. One of these buttons renders differently across the AIR/SWF divide. We suggest that you re-run the tests in the SWF GUI, as explained below, and take a look with the diff viewer.)
-
-====  Automated Mode In Mozilla ====
-
-If you'd like to run your tests in Firefox, follow these steps:
- * Add this code to your `/dev/build-user.properties` file:
-{{{
-    mozilla.browser.executable=C:/Apps/Firefox/firefox.exe
-    arc-flexunit2.using.mozilla=true
-}}}
- * Adjust browser executable's location to suit your local system
- * Execute "ant test" as described above
 
 ==== More Work For Extra Credit :) ====
 
