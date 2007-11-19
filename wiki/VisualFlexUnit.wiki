@@ -207,10 +207,11 @@ testMyAccordianComponent():void
 }}}
 
 Clearly, `testSequence` is central to VFU's test process. Here's a quick overview of what `testSequence` is and does: 
-
-`VfuTestCase.testSequence` contains an instance of `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager`. Because much of what we do in the test process involves asynchronous operations, we use `TestSequenceManager` to manage a queue of `TestSequenceCommand` instances. Each of your test methods tells this manager instance which commands to add to the queue, then tells it to start. The command instances each perform an operation (and, when the operation is asynchronous, wait for it to finish), then inform `TestSequenceManager` that they are done. `TestSequenceManager` then calls then tells the next command to execute, and this process continues until the queue is finished.
-
-The `add...()` calls you see in the example above tell `TestSequenceManager` to add commands to the queue but there isn't a direct one-to-one relationship between these calls and the commands that are added to the queue; for example `addRefresh()` adds three commands. As mentioned, some of the commands are synchronous (e.g. `SetProperty`) while others (e.g. those created by `addRefresh()`) are asynchronous.
+ * `VfuTestCase.testSequence` contains an instance of `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager`. Because much of what we do in the test process involves asynchronous operations, we use `TestSequenceManager` to manage a queue of `TestSequenceCommand` instances. 
+ * Each of your test methods tells this manager instance which commands to add to the queue, then tells it to start the queue by executing the first command. 
+ * The command instances each perform an operation (and, when the operation is asynchronous, wait for it to finish), then inform `TestSequenceManager` that they are done. 
+ * `TestSequenceManager` then tells the next command to execute, and this process continues until the queue is finished.
+ * There isn't a direct one-to-one relationship between the `add...()` calls and the commands that are added to the queue; for example `addRefresh()` adds three commands. As mentioned, some of the commands are synchronous (e.g. `SetProperty`) while others (e.g. those created by `addRefresh()`) are asynchronous.
 
 Now that you have an overview, here are the details of how to write your own test methods:
 
