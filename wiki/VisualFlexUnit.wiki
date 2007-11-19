@@ -8,6 +8,7 @@ Contributors:
  * [http://www.brightworks.com/flex_ability Douglas McCarroll]
  * [http://www.joeberkovitz.com Joe Berkovitz]
  * Marty Frenzel
+ * [http://life.neophi.com/danielr/ Daniel Rinehart]
  * [http://www.timwalling.com Tim Walling]
 
 ==  Introduction ==
