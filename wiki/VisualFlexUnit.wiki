@@ -366,7 +366,7 @@ At the command prompt:
 
 ==== More Work For Extra Credit :) ====
 
-In an ideal world you'll be running a one click automated build process that builds and tests all of your projects. We've included a working build process for the entire `dev/` folder in the VFU download. The steps needed to wire both `[app_project]` and `[app_project]`Test into this process have been listed in Step 4. Also, the framework for including sub-projects is modeled in the `dev/vfu/` folder.
+In an ideal world you'll be running a one click automated build process that builds and tests all of your projects. We've included a working build process for the entire `dev/` folder in the VFU download. The steps needed to wire both `[app_project]` and `[app_project]Test` into this process have been listed in Step 4. Also, the framework for including sub-projects is modeled in the `dev/vfu/` folder.
 
 Your mission, should you choose to accept it, is to wire your projects into the process. To test the process:
  * At the command prompt, cd to the `dev/` folder
