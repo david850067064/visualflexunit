@@ -36,7 +36,7 @@ Tests can be run either in GUI mode or through Ant.
 
 ===  GUI Mode ===
 
-The GUI version of VFU can run as AIR app, in a browser, or in Flash Player.
+The GUI version of VFU can run as AIR app or in Flash Player.
 
 GUI mode will report errors, just like !FlexUnit. It also allows you to:
  * Use a visual diff viewer to see how test result images differ from baseline images
@@ -48,7 +48,7 @@ GUI mode will report errors, just like !FlexUnit. It also allows you to:
 ===  Ant Mode ===
 
  * Simply reports whether tests pass or fail.
- * Can run tests in either Firefox or Flash Player.
+ * Runs tests in Flash Player.
  * The build process could be modified to send notification emails, etc.
 
 ===  Why Is This Useful? ===
@@ -60,7 +60,7 @@ By adding visual tests to your build process you can be assured that any changes
 ====  Testing For Cross-Platform Rendering Differences ====
 
 While Adobe has done a great job of making Flash & Flex a write-once / deploy-anywhere platform, there may be differences in how images render:
- * Between the Flash Player, browser plugins, and the AIR runtime
+ * Between the Flash Player and the AIR runtime
  * Between Windows, Mac, and Linux
  * And, of course, between the many combinations of these variables
 
@@ -80,9 +80,7 @@ The following subsections give directions on how to use Visual !FlexUnit.
 
 *Step 4: Connecting to VFU's Build Process:* How to wire your newly created test project into the Ant build process that we've included with your download. This can be considered a continuation of Step 1 - the second half of bootstrapping a test project. We've placed it in Step 4 because some users won't want to go this far.
 
-*Step 5: Using the Build Process:* Fifth, we explain how to use the build process to:
- * Run your tests in automated mode in the Flash Player
- * Run your tests in automated mode in !FireFox
+*Step 5: Using the Build Process:* Fifth, we explain how to use the build process to run your tests in automated mode in the Flash Player
  
 *Step 6: Using VFU's SWF-Based GUI:* See details below on why, if you've gotten this far, you might want to do this.
 === ===
@@ -212,7 +210,7 @@ As you can see, `testSequence` is central to VFU's test process. Here's a quick 
  * The command instances each perform an operation (and, when the operation is asynchronous, wait for it to finish), then inform `TestSequenceManager` that they are done. 
  * `TestSequenceManager` then tells the next command to execute; this process continues until the queue is finished.
  * There isn't a direct one-to-one relationship between the `add...()` calls in your test method and the commands that are added to the queue; for example `addRefresh()` adds three commands. 
- * Some of the commands are synchronous (e.g. `SetProperty`) while others (e.g. those created by `addRefresh()`) are asynchronous.
+ * Some of the commands are synchronous (e.g. `SetProperty`) while others (e.g. `addAssertComponentMatchBaseline()`) are asynchronous.
 
 Now that you have an overview, here are the details of how to write your own test methods:
 
@@ -226,7 +224,7 @@ Your visual test methods should follow the same pattern as the example. The acti
  * A refresh. This involves several actions under the hood but essentially allows the component to display fully before its appearance is tested. (Take a look at the code for `TestSequenceManager.addRefresh()` if you're curious about the details.)
  * An assertion that the component's appearance will now match a saved baseline. Note that, in addition to the component instance, we pass in an ID integer to the `addAssertComponentMatchBaseline()` call. This must be unique for each such call within a given method, and is used by VFU to determine the name of the component's baseline file.
 
-See the Visual !FlexUnit ASDocs for `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager` for details on its `add[some_command]()` methods, their parameters, etc. ASDocs can be found at `\dev\vfu\visualflexunit\build\as3doc\index.html`.
+See the Visual !FlexUnit ASDocs for `com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager` for details on its `add[some_command]()` methods, their parameters, etc. ASDocs can be found in the `/visualflexunit/asDocs/` folder in the visualflexunit.zip download file.
 
 As usual, your test method names should start with "test".
 
@@ -273,7 +271,7 @@ This section outlines a series of steps that you can take to connect your visual
 
 We'll continue to use our previously defined conventions here, i.e. we use *`[app_project]`* to represent your tested project's name, and *`[parent_project]`* to represent the intermediate folder between `dev/` and your project's folder.
 
-(For the purposes of these instructions *`[app_project]`* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project, you'll also use this name for your Ant project's name attribute, but we digress.)
+(For the purposes of these instructions *`[app_project]`* simply indicates your tested project's folder's name. If you choose to also implement the build process modeled here for your tested project you'll also use this name for your Ant project's name attribute, but we digress.)
 
 ==== 4.1 Setting User-Specific Settings ====
 
@@ -318,7 +316,7 @@ Optional. If you'd like to include `[app_project]` in the build process, follow 
  * `build-imports.xml` will usually work without modifications. If you are using folders other than `/project_name/src/` and `/project_name/bin/` as your source and build directories, you can override some default Ant property settings here.
   * The `src.flex.dir` property is set to a default value of `"src"` in `dev/tools/build-common-properties.xml`.
   * The `build.dir` property is set to a default value of `"bin"` in the same file.
-  * You can override these by adding a line like this to this file: `"<property name="src.flex.dir" value="src/flex" />"`
+  * You can override these by adding lines like this to this file: `"<property name="src.flex.dir" value="src/flex" />"`
   * Another option is to edit the property settings in `dev/tools/build-common-properties.xml`. This will modify the setting for all projects so it would break the build process for the projects in `dev/vfu/` in this case, but if you are setting up a build process for your own projects you'll want these values to reflect your standard folder names etc.
 
 ==== 4.5 Pulling The Process Into The Test Project ====
@@ -360,7 +358,7 @@ We assume that you have done the following:
 At the command prompt:
  * cd to the `[app_project]Test` folder.
  * Execute "ant test". This will compile your `[app_project]Test` project, if needed, and run your tests.
- * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures. Also, you should see a "BUILD SUCCESSFUL" message when the build process finishes. A "BUILD-FAILED" message indicates that there's a problem with the build process.
+ * Ant will output text to the command prompt window which will tell you how many of your tests have passed and failed, and provide stack traces for failures. Also, you should see a `BUILD SUCCESSFUL` message when the build process finishes. A `BUILD-FAILED` message indicates that there's a problem with the build process.
 
 (If you're testing the example test components that we provide in `vfuexample` you'll find that there is one test that reliably fails at this point. The testCanvas_2() test method tests a component that consists of buttons on a canvas. We've specified drop shadows for the buttons, using bizarre property settings for the shadows. One of these buttons renders differently across the AIR/SWF divide. We suggest that you re-run the tests in the SWF GUI, as explained below, and take a look with the diff viewer.)
 
@@ -371,12 +369,9 @@ In an ideal world you'll be running a one click automated build process that bui
 Your mission, should you choose to accept it, is to wire your projects into the process. To test the process:
  * At the command prompt, cd to the `dev/` folder
  * Execute `ant all`
+ * Your goal is to see `BUILD SUCCESSFUL` appear in the command prompt window at the end of the process.
 
 Good luck! :)
-
-====  Automated Mode In AIR ====
-
-(Not yet implemented)
 
 ====  If Tests Fail In Automated Mode ====
 
@@ -390,6 +385,6 @@ If you've run your tests on a different platform from that in which their baseli
  * Execute this command:
        `ant swf-gui-all`
  * This will clean your build directory, compile the SWF GUI, and run it. The SWF GUI is essentially the same as the AIR GUI with these exceptions:
-  * The app is launched using Ant
+  * The app is typically launched using Ant
   * It runs in Flash Player rather than AIR
   * We haven't implemented the ability to save baselines in the SWF GUI version yet
