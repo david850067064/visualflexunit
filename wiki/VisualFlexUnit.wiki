@@ -181,7 +181,7 @@ Here's an overview of a VFU test project's contents. You can see this implemente
         src
           baseline
             SomeTestClassName
-              someMethodName
+              someTestMethodName
                 1.png
                 2.png
               anotherTestMethodName
