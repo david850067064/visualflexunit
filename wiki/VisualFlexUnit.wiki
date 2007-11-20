@@ -157,6 +157,8 @@ Here's an overview of a VFU test project's contents. You can see this implemente
         .project                              |-- FlexBuilder project files & folder
         .settings                             |
           org.eclipse.core.resources.prefs   /
+        build.xml                               - Ant build file
+        build-imports.xml                       - ditto
         libs                                    - Folder included because FlexBuilder requires it - not used
         src
           VfuAirGui.mxml                     \
@@ -164,11 +166,31 @@ Here's an overview of a VFU test project's contents. You can see this implemente
           VfuSwfGui.mxml                     /
           VfuGuiFlexUnitAllTests.as             - Lists test classes    
           baseline                              - Folder for image baseline files
-          com                                   - An example of a source code folder that you'd add
+          com                                   - An example of a source code folder that you might add
           skinning
             styles.css                          - Used by both GUI and automated test apps 
             fonts                               - Folder for font files
  }}}
+ 
+ The projects `src/baseline/` folder stores baseline folders in a structure based on test class names, test method names, and assertion IDs:
+ 
+{{{
+  dev
+    [parent_project]
+      [app_project]Test
+        src
+          baseline
+            SomeTestClassName
+              someMethodName
+                1.png
+                2.png
+              anotherTestMethodName
+                1.png
+                2.png
+            AnotherTestClassName
+              etc...
+ }}}
+ 
 
 ===  Step 1: Bootstrapping a Visual Test Project ===
 
