@@ -73,6 +73,8 @@ To date our limited testing has only detected a) differences that aren't visuall
 
 The following subsections give directions on how to use Visual !FlexUnit.
 
+*Introduction:* Folder layout, naming conventions, example projects, etc.
+
 *Step 1: Bootstrapping a Visual Test Project:* In this section we show you how to use an included Ant script to create an empty project framework for your visual test project.
 
 *Step 2: Writing Visual Tests:* Writing test classes and methods for VFU.
@@ -86,11 +88,14 @@ The following subsections give directions on how to use Visual !FlexUnit.
 *Step 6: Using VFU's SWF-Based GUI:* See details below on why, if you've gotten this far, you might want to do this.
 === ===
 === ===
-===  Folder Layout ===
+=== Introduction ===
+
+====  Folder Layout ====
 
 The downloadable visualflexunit.zip file unzips into this folder hierarchy:
 {{{
   visualflexunit
+    asdocs
     dev
       arc-flexunit2             - build process code
       flexunit                  - FlexUnit source code
@@ -107,6 +112,7 @@ These instructions assume that you'll be using a folder structure similar to tha
 For example, if your parent project is named 'foo' and your tested project is name 'bar' you'd have:
 {{{
    visualflexunit
+     asdocs
      dev
        arc-flexunit2
        flexunit     
@@ -121,7 +127,7 @@ For example, if your parent project is named 'foo' and your tested project is na
          visualflexunitTest
   }}}
   
-=== Conventions ===
+==== Conventions ====
   
  * Throughout these instructions we use these conventions:
   * *`[parent_project]`* - The name of your parent project, e.g. `foo` in the example above
@@ -129,13 +135,40 @@ For example, if your parent project is named 'foo' and your tested project is na
   * *`[app_project]Test`* - The name of the test project which will contain tests for `[app_project]`, e.g. `barTest` in the example above
  * All project names (`[parent_project]` and `[app_project]`) must be unique within your build process
 
-=== Example Projects ===
+==== Example Projects ====
 
 We've included two example projects in `dev/vfu/`: 
  * `vfuexample` is an example projects that contains several simple custom components.
  * `vfuexampleTest` is a VFU enabled test project that tests the visual components in `vfuexample`. It contains all the functionality described in Steps 1 and 4 for bootstrapped projects, plus:
   * Fully implemented VFU test code for testing `vfuexample`. You can refer to this when implementing Step 2.
   * Fully implemented Ant code that wires the test project into the build process. You'll want to refer to this when implementing Step 4 for your own projects.
+
+==== Test Project Contents ====
+
+Here's an overview of a VFU test project's contents. You can see this implemented in `dev/vfu/vfuexampleTest/`.
+
+{{{
+  dev
+    [parent_project]
+      [app_project]
+      [app_project]Test
+        .actionScriptProperties              \
+        .flexProperties                       |
+        .project                              |-- FlexBuilder project files & folder
+        .settings                             |
+          org.eclipse.core.resources.prefs   /
+        libs                                    - Folder included because FlexBuilder requires it - not used
+        src
+          VfuAirGui.mxml                     \
+          VfuAirGui-app.xml                   |-- GUI app files
+          VfuSwfGui.mxml                     /
+          VfuGuiFlexUnitAllTests.as             - Lists test classes    
+          baseline                              - Folder for image baseline files
+          com                                   - An example of a source code folder that you'd add
+          skinning
+            styles.css                          - Used by both GUI and automated test apps 
+            fonts                               - Folder for font files
+ }}}
 
 ===  Step 1: Bootstrapping a Visual Test Project ===
 
