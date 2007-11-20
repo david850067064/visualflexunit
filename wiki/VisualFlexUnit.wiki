@@ -172,7 +172,7 @@ Here's an overview of a VFU test project's contents. You can see this implemente
             fonts                               - Folder for font files
  }}}
  
- The projects `src/baseline/` folder stores baseline folders in a structure based on test class names, test method names, and assertion IDs:
+ You VFU test app will store baseline images in the projects `src/baseline/` folder using structure based on: a) test class names, b) test method names, and c) assertion IDs:
  
 {{{
   dev
@@ -182,10 +182,10 @@ Here's an overview of a VFU test project's contents. You can see this implemente
           baseline
             SomeTestClassName
               someTestMethodName
-                1.png
-                2.png
-              anotherTestMethodName
-                1.png
+                1.png                      In this case, "1" and "2" are "assertion IDs". These are
+                2.png                      passed in when visual assertions are made. Any integer ID 
+              anotherTestMethodName        can be used but, obviously, they need to be unique within 
+                1.png                      a given test method.
                 2.png
             AnotherTestClassName
               etc...
