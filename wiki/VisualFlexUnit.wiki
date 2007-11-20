@@ -172,7 +172,7 @@ Here's an overview of a VFU test project's contents. You can see this implemente
             fonts                               - Folder for font files
  }}}
  
- You VFU test app will store baseline images in the projects `src/baseline/` folder using structure based on: a) test class names, b) test method names, and c) assertion IDs:
+ VFU will store baseline images in the project's `src/baseline/` folder using a structure based on: a) test class names, b) test method names, and c) assertion IDs:
  
 {{{
   dev
