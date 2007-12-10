@@ -138,7 +138,7 @@ For example, if your parent project is named 'foo' and your tested project is na
 ==== Example Projects ====
 
 We've included two example projects in `dev/vfu/`: 
- * `vfuexample` is an example projects that contains several simple custom components.
+ * `vfuexample` is an example project that contains several simple custom components.
  * `vfuexampleTest` is a VFU enabled test project that tests the visual components in `vfuexample`. It contains all the functionality described in Steps 1 and 4 for bootstrapped projects, plus:
   * Fully implemented VFU test code for testing `vfuexample`. You can refer to this when implementing Step 2.
   * Fully implemented Ant code that wires the test project into the build process. You'll want to refer to this when implementing Step 4 for your own projects.
