@@ -1,0 +1,43 @@
+<project name="vfu" default="help" basedir=".">
+
+  <!-- non-overrideable application properties -->
+  <property name="project.name"  value="${ant.project.name}" />
+  <property name="app.name"      value="${project.name}"     />
+
+  <!-- import external asset locations and build framework -->
+  <import file="build-imports.xml" />
+  
+  <target name="help" description="How to get help">
+    <echo message="Run with -projecthelp to see valid targets"/>
+  </target>
+
+  <macrodef name="echoAndRun">
+    <attribute name="project"/>
+    <attribute name="target"/>
+    <sequential>
+      <echo message="Running @{target} on project @{project}"/>
+      <ant dir="@{project}" target="@{target}" inheritAll="false"/>
+    </sequential>
+  </macrodef>
+  
+  <target name="all" depends="clean,build,test" description="Runs clean, build and test targets" />
+
+  <target name="clean" description="Clean all projects">
+    <echoAndRun project="vfuexample"           target="clean"/>
+    <echoAndRun project="vfuexampleTest"       target="clean"/>
+    <echoAndRun project="visualflexunit"       target="clean"/>
+    <echoAndRun project="visualflexunitTest"   target="clean"/>
+  </target>
+
+  <target name="build" description="Build all projects">
+    <echoAndRun project="visualflexunit"       target="build"/>
+    <echoAndRun project="visualflexunitTest"   target="build"/>
+    <echoAndRun project="vfuexample"           target="build"/>
+    <echoAndRun project="vfuexampleTest"       target="build"/>
+  </target>
+  
+  <target name="test" description="Test all test projects">
+    <echoAndRun project="visualflexunitTest"   target="test"/>
+    <echoAndRun project="vfuexampleTest"       target="test"/>
+  </target>
+</project>

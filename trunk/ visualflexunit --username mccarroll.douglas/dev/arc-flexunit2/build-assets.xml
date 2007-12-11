@@ -1,0 +1,7 @@
+<project name="arc-flexunit.assets">
+    <property name="arc-flexunit2.root.dir"        location="${root.dir}/arc-flexunit2"/>
+    <property name="arc-flexunit2.runtests.mxml"   location="${arc-flexunit2.root.dir}/src/RunTests.mxml"/>
+    <property name="arc-flexunit2.swc"             location="${arc-flexunit2.root.dir}/${build.dir}/arc-flexunit2.swc"/>
+    <property name="arc-flexunit2.jar"             location="${arc-flexunit2.root.dir}/${build.dir}/arc-flexunit2.jar"/>
+    <property name="arc-flexunit2.mxml"            location="${arc-flexunit2.root.dir}/template/RunTests.mxml" />
+</project>

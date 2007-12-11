@@ -1,0 +1,10 @@
+<project name="visualflexunit.assets">
+
+  <property name="visualflexunit.root.dir"            location="${root.dir}/vfu/visualflexunit"/>
+
+  <property name="visualflexunit.runtests.mxml"       location="${visualflexunit.root.dir}/template/RunTests.mxml"/>
+  <property name="visualflexunit.swc"                 location="${visualflexunit.root.dir}/${build.dir}/visualflexunit.swc"/>
+
+  <property name="visualflexunit.swfgui.app.name"     value="VfuSwfGui" />
+
+</project>
