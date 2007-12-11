@@ -1,0 +1,17 @@
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                backgroundColor="white"
+                creationComplete="runAutomatedTest()"
+                >
+
+    <mx:Script>
+        <![CDATA[
+        import com.allurent.flexunit2.framework.ARCTestRunner;
+
+        public function runAutomatedTest():void
+        { 
+          ARCTestRunner.run( ${arc-flexunit2.alltests.suite}, "${arc-flexunit2.reportserver.host}", ${arc-flexunit2.reportserver.port});
+        } 
+        ]]>
+    </mx:Script>
+
+</mx:Application>

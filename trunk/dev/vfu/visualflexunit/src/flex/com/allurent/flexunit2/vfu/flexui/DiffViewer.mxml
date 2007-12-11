@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2007 Allurent, Inc.
+    http://code.google.com/p/visualflexunit/
+    
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<mx:Panel 
+        xmlns:vfuui="com.allurent.flexunit2.vfu.flexui.*"
+        xmlns:mx="http://www.adobe.com/2006/mxml" 
+        title="Diff Viewer"
+        modalTransparency=".8"
+        cornerRadius="15"
+        borderAlpha=".6">
+        
+    <mx:Script>
+        <![CDATA[
+            import com.allurent.flexunit2.vfu.errors.BitmapNotMatchBaselineError;
+            import com.allurent.flexunit2.vfu.utils.ColorUtil;
+            import com.allurent.flexunit2.vfu.utils.bitmap.BitmapUtil;
+
+            import mx.collections.ArrayCollection;
+            import mx.core.Application;
+            import mx.events.ItemClickEvent;
+            
+            public static const BLESS_AND_CLOSE_DIFF_VIEWER:String = "blessAndCloseDiffViewer";
+            public static const CLOSE_DIFF_VIEWER:String = "closeDiffViewer";
+            
+            [Bindable]
+            public var error:BitmapNotMatchBaselineError; 
+            
+            private static const DISPLAY_EXPECTED:String     = "DISPLAY_EXPECTED";
+            private static const DISPLAY_ACTUAL:String       = "DISPLAY_ACTUAL";
+            private static const DISPLAY_ALTERNATING:String  = "DISPLAY_ALTERNATING";
+            private static const DISPLAY_FULL_IMAGE:String   = "DISPLAY_FULL_IMAGE";
+            private static const DISPLAY_DIFF:String         = "DISPLAY_DIFF";
+            
+            [Bindable]
+            private var _selectedActual:Bitmap;
+            [Bindable]
+            private var _selectedExpected:Bitmap;
+            [Bindable]
+            private var _howMode:String;
+            [Bindable]
+            private var _whatMode:String;
+            [Bindable]
+            private var _descriptiveText:String;
+            [Bindable]
+            private var _pixelData:ArrayCollection;
+            
+            /* ***************************************************************
+             *
+             *     Public Methods
+             *  
+             ****************************************************************/
+             
+            public function init():void
+            {
+                _descriptiveText = error.nonMatchingPixelCount + "/" + error.totalPixelCount + " pixels don't match (" + error.percentDifferent + "%)";
+                _howMode = DISPLAY_FULL_IMAGE;
+                _whatMode = DISPLAY_ALTERNATING;
+                updateImageDisplayMode();
+            }
+            
+            /* ***************************************************************
+             *
+             *     Private Methods
+             *  
+             ****************************************************************/
+         
+            private function onBlessAndCloseButtonClick(e:MouseEvent):void
+            {
+                dispatchEvent(new Event(BLESS_AND_CLOSE_DIFF_VIEWER));
+            }
+
+            private function onCloseButtonClick(e:MouseEvent):void
+            {
+                dispatchEvent(new Event(CLOSE_DIFF_VIEWER));
+            }
+
+            private function onViewHowButtonClick(e:ItemClickEvent):void
+            {
+                _howMode = e.currentTarget.selectedValue;
+                updateImageDisplayMode();
+            }
+            
+            private function onViewWhatButtonClick(e:ItemClickEvent):void
+            {
+                _whatMode = e.currentTarget.selectedValue;
+                updateImageDisplayMode();
+            }
+            
+            private function updateImageDisplayMode():void
+            {
+                switch (_howMode)
+                {
+                    // See comments at top of file
+                    case DISPLAY_FULL_IMAGE:
+                        _selectedActual    = new Bitmap(error.actualBMD);
+                        _selectedExpected  = new Bitmap(error.expectedBMD);
+                        break;
+                    case DISPLAY_DIFF:
+                        _selectedActual    = new Bitmap(error.actualDiffBMD);
+                        _selectedExpected  = new Bitmap(error.expectedDiffBMD); 
+                        break;
+                    default:
+                        throw new Error("_howMode's value not covered by switch case");
+                }
+                switch (_whatMode)
+                {
+                    case DISPLAY_EXPECTED:
+                        diffAlternator.stop();
+                        viewStack.selectedChild = expectedImageBox;
+                        break;
+                    case DISPLAY_ACTUAL:
+                        diffAlternator.stop();
+                        viewStack.selectedChild = actualImageBox;
+                        break;
+                    case DISPLAY_ALTERNATING:
+                        viewStack.selectedChild = diffAlternator;
+                        diffAlternator.start(_selectedActual.bitmapData, _selectedExpected.bitmapData);
+                        break;
+                    default:
+                        throw new Error("_whatMode's value not covered by switch case");
+                }
+            }
+        ]]>
+    </mx:Script>
+    
+    <mx:HBox width="100%" horizontalAlign="right" paddingTop="10" paddingRight="10">
+        <mx:Button 
+                label="Bless and Close"
+                click="onBlessAndCloseButtonClick(event)"
+                enabled="{Application.application.blessingEnabled}" />
+        <mx:Button 
+                label="Close"
+                click="onCloseButtonClick(event)" />
+    </mx:HBox>
+    <mx:TabNavigator height="100%" width="100%">
+        <mx:VBox label="View Images">
+            <mx:HBox width="100%" paddingLeft="20">
+                <mx:VBox styleName="paddedBox">
+                    <mx:Label 
+                            text="View What?"
+                            fontWeight="bold"/>
+                    <mx:RadioButtonGroup 
+                            id="viewWhatButtonGroup"
+                            itemClick="onViewWhatButtonClick(event)"
+                            selectedValue="DISPLAY_ALTERNATING"/>
+                        <mx:RadioButton
+                                groupName="viewWhatButtonGroup"
+                                id="viewWhatButton_Baseline"
+                                value="DISPLAY_EXPECTED"
+                                label="Baseline image"/>
+                        <mx:RadioButton
+                                groupName="viewWhatButtonGroup"
+                                id="viewWhatButton_Current"
+                                value="DISPLAY_ACTUAL"
+                                label="Current image"/>
+                        <mx:RadioButton
+                                groupName="viewWhatButtonGroup"
+                                id="viewWhatButton_Alternate"
+                                value="DISPLAY_ALTERNATING"
+                                label="Alternating images"/>
+                </mx:VBox>
+                <mx:VBox styleName="paddedBox">
+                    <mx:Label 
+                            text="View How?"
+                            fontWeight="bold"/>
+                    <mx:RadioButtonGroup 
+                            id="viewHowButtonGroup"
+                            itemClick="onViewHowButtonClick(event)"
+                            selectedValue="DISPLAY_FULL_IMAGE"/>
+                        <mx:RadioButton
+                                groupName="viewHowButtonGroup"
+                                id="viewHowButton_ShowAll"
+                                value="DISPLAY_FULL_IMAGE"
+                                label="Show entire image"/>
+                        <mx:RadioButton
+                                groupName="viewHowButtonGroup"
+                                id="viewHowButton_DiffOnly"
+                                value="DISPLAY_DIFF"
+                                label="Only show non-matching pixels"/>
+                </mx:VBox>
+                <mx:VBox  styleName="paddedBox">
+                    <mx:Label 
+                            text="Background Color"
+                            fontWeight="bold"/>
+                    <mx:ColorPicker
+                            id="clrPicker"
+                            selectedColor="0xFFFFFFBB"/>
+                </mx:VBox>
+            </mx:HBox>
+            <mx:Label 
+                    text="{_descriptiveText}" 
+                    fontWeight="bold" 
+                    paddingLeft="10"/>
+            <mx:HBox
+                    height="100%"
+                    width="100%"
+                    backgroundColor="{clrPicker.selectedColor}">
+                <mx:ViewStack
+                        height="100%"
+                        width="100%"
+                        styleName="paddedBox"
+                        id="viewStack"
+                        creationPolicy="all">
+                    <mx:Box id="actualImageBox">
+                        <mx:Label text="Current"/>
+                        <mx:Image id="actualImage" source="{_selectedActual}" />
+                    </mx:Box>
+                    <mx:Box id="expectedImageBox">
+                        <mx:Label text="Baseline"/>
+                        <mx:Image id="expectedImage" source="{_selectedExpected}"/>
+                    </mx:Box>
+                    <vfuui:DiffAlternator id="diffAlternator"/>
+                </mx:ViewStack>
+            </mx:HBox>
+        </mx:VBox>
+            <!--
+            o.color1   
+            o.color2 
+             -->
+        <mx:VBox label="View Pixel Data">
+            <mx:DataGrid 
+                    dataProvider="{error.nonMatchingPixelData}"
+                    height="100%"
+                    width="100%">
+                <mx:columns>
+                    <mx:DataGridColumn dataField="absoluteColorDiff"   headerText="Diff Total (Abs)"  color="0xFF0000"  textAlign="center"  width="100"/>
+                    <mx:DataGridColumn dataField="x"              headerText="X Pos"                               textAlign="center"  />
+                    <mx:DataGridColumn dataField="y"              headerText="Y Pos"                               textAlign="center"  />
+                    <mx:DataGridColumn dataField="alpha1"         headerText="A Exp'd"                             textAlign="center"  />
+                    <mx:DataGridColumn dataField="alpha2"         headerText="A Act'l"                             textAlign="center"  />
+                    <mx:DataGridColumn dataField="alphaDiff"      headerText="A Diff"            color="0xFF0000"  textAlign="center"  />
+                    <mx:DataGridColumn dataField="red1"           headerText="R Exp'd"                             textAlign="center"  />
+                    <mx:DataGridColumn dataField="red2"           headerText="R Act'l"                             textAlign="center"  />
+                    <mx:DataGridColumn dataField="redDiff"        headerText="R Diff"            color="0xFF0000"  textAlign="center"  />
+                    <mx:DataGridColumn dataField="green1"         headerText="G Exp'd"                             textAlign="center"  />
+                    <mx:DataGridColumn dataField="green2"         headerText="G Act'l"                             textAlign="center"  />
+                    <mx:DataGridColumn dataField="greenDiff"      headerText="G Diff"            color="0xFF0000"  textAlign="center"  />
+                    <mx:DataGridColumn dataField="blue1"          headerText="B Exp'd"                             textAlign="center"  />
+                    <mx:DataGridColumn dataField="blue2"          headerText="B Act'l"                             textAlign="center"  />
+                    <mx:DataGridColumn dataField="blueDiff"       headerText="B Diff"            color="0xFF0000"  textAlign="center"  />
+                </mx:columns>
+            </mx:DataGrid>
+        </mx:VBox>
+    </mx:TabNavigator>
+</mx:Panel>

@@ -1,0 +1,16 @@
+<project name="vfuexample" default="test">
+
+    <property name="root.dir" location="../../"/>
+    <!-- non-overrideable application properties -->
+    <property name="project.name" value="${ant.project.name}" />
+    <property name="app.name" value="${project.name}" />
+
+    <!-- import external asset locations and build framework -->
+    <import file="build-imports.xml" />
+
+    <path id="flex.lib.path">
+        <!-- this project requires no libs -->
+    </path>
+    
+    <target name="build" depends="flex-library" description="Build the SWC library"/>
+</project>

@@ -1,0 +1,714 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../../../print.css" type="text/css" media="print">
+<meta content="TestSequenceManager,com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager,currentTestDescription,displayPanel,addAction,addAssertComponentMatchBaseline,addEventDispatch,addEventListener,addEventOrQuiesceWait,addEventWait,addQuiesceWait,addRefresh,addSetProperty,addSetStyle,addUIComponent,commandFinished,getCurrentCommandClass,start,validateNow" name="keywords">
+<title>com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'TestSequenceManager - API Documentation';
+				var baseRef = '../../../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../../../all-classes.html')" href="../../../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../../all-classes.html')" href="../../../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../../index-list.html')" href="../../../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../../../index.html?com/allurent/flexunit2/vfu/framework/testsequence/TestSequenceManager.html&amp;com/allurent/flexunit2/vfu/framework/testsequence/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;TestSequenceManager</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class TestSequenceManager"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.allurent.flexunit2.vfu.framework.testsequence</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class TestSequenceManager</td>
+</tr>
+</table>
+<p></p>
+     This class provides much of VfuTestCase's functionality. It is stored in that class's
+     testSequence property, and implements test sequences by creating and executing a queue of
+     TestSequenceCommand instances. We've tried to comment it fairly thoroughly for two reasons:
+     a) because it is so central to VFU's functionality, and b) because it is fairly complex.
+     These ASDocs only display comments for public members of the class. If you're interested
+     in an in depth look at how the class works we suggest that you look at the source code
+     where you'll find not only the code but comments explaining private members, etc.
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#currentTestDescription">currentTestDescription</a> : String<div class="summaryTableDescription">[read-only]</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#displayPanel">displayPanel</a> : Panel<div class="summaryTableDescription">[read-only]</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#TestSequenceManager()">TestSequenceManager</a>(testCase:<a href="../VfuTestCase.html">VfuTestCase</a>)</div>
+<div class="summaryTableDescription">
+         </div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addAction()">addAction</a>(func:Function):void</div>
+<div class="summaryTableDescription">
+         This method adds an DoAction command instance to the test sequence queue.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addAssertComponentMatchBaseline()">addAssertComponentMatchBaseline</a>(comp:UIComponent, testID:int, timeout:int, judgmentStrategy:<a href="../strategies/IBitmapMatchJudge.html">IBitmapMatchJudge</a> = null):void</div>
+<div class="summaryTableDescription">
+         This method adds an AssertComponentMatchBaseline command instance to the test sequence queue.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addEventDispatch()">addEventDispatch</a>(target:EventDispatcher, event:Event):void</div>
+<div class="summaryTableDescription">
+         This method adds a DispatchEvent command object to the test sequence queue which, when executed
+         calls dispatch() event on the target you specify.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addEventListener()">addEventListener</a>(target:EventDispatcher, eventType:String, listener:Function):void</div>
+<div class="summaryTableDescription">
+         This method should only be used by the TestSequenceCommands that this class manages.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addEventOrQuiesceWait()">addEventOrQuiesceWait</a>(target:EventDispatcher, eventType:String, timeout:int, quiesceDuration:int):void</div>
+<div class="summaryTableDescription">
+         This method adds a WaitForEventOrQuiesce command object to the test sequence queue.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addEventWait()">addEventWait</a>(target:EventDispatcher, eventType:String, timeout:int, testFunc:Function = null):void</div>
+<div class="summaryTableDescription">
+         This method adds a WaitForEvent command object to the test sequence queue.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addQuiesceWait()">addQuiesceWait</a>(timeout:int, quiesceDuration:int):void</div>
+<div class="summaryTableDescription">
+         This method adds a WaitForQuiesce command object to the test sequence queue.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addRefresh()">addRefresh</a>(timeout:int, quiesceDuration:int):void</div>
+<div class="summaryTableDescription">
+         This method adds several different command objects to the test sequence queue which, working together, will hopefully
+         give a displayed UI component an adequate opportunity to render fully.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addSetProperty()">addSetProperty</a>(instance:Object, prop:String, val:Object):void</div>
+<div class="summaryTableDescription">
+         This method adds a SetProperty command object to the test sequence queue which (surprise!)
+         sets the property you specify to the value that you provide on the instance that you provide.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addSetStyle()">addSetStyle</a>(comp:UIComponent, styleName:String, val:Object):void</div>
+<div class="summaryTableDescription">
+         Just like addSetProperty() except that we're setting a style on a UIComponent, rather than a
+         property on an Object.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addUIComponent()">addUIComponent</a>(comp:UIComponent):void</div>
+<div class="summaryTableDescription">
+         This method should only be used by the TestSequenceCommands that this class manages.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#commandFinished()">commandFinished</a>(command:<a href="commands/TestSequenceCommand.html">TestSequenceCommand</a>, failureError:Error = null):void</div>
+<div class="summaryTableDescription">
+         This method is called by the current active command when it's finished.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getCurrentCommandClass()">getCurrentCommandClass</a>():String</div>
+<div class="summaryTableDescription">
+         Returns the class name of the current command
+         </div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#start()">start</a>(timeout:int = 0):void</div>
+<div class="summaryTableDescription">
+         This method starts the test sequence that you've created using the methods above.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#validateNow()">validateNow</a>():void</div>
+<div class="summaryTableDescription">
+         Simply calls validateNow() on the display panel
+         </div>
+</td><td class="summaryTableOwnerCol">TestSequenceManager</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="currentTestDescription"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">currentTestDescription</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>currentTestDescription:String</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get currentTestDescription():String</code>
+<br>
+</div>
+<a name="displayPanel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">displayPanel</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>displayPanel:Panel</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get displayPanel():Panel</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="TestSequenceManager()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TestSequenceManager</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function TestSequenceManager(testCase:<a href="../VfuTestCase.html">VfuTestCase</a>)</code><p>
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">testCase</span>:<a href="../VfuTestCase.html">VfuTestCase</a></code> &mdash; An instance of VfuTestCase, and this class's client, passed in by itself when it instanciates this class.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="addAction()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addAction</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addAction(func:Function):void</code><p>
+         This method adds an DoAction command instance to the test sequence queue.
+         If you have some functionality that you'd like executed during the test
+         sequence you can simply create a function and pass it in here, and it will
+         be executed when the sequence is run.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">func</span>:Function</code> &mdash; The function that you'd like executed.
+         </td>
+</tr>
+</table>
+</div>
+<a name="addAssertComponentMatchBaseline()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addAssertComponentMatchBaseline</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addAssertComponentMatchBaseline(comp:UIComponent, testID:int, timeout:int, judgmentStrategy:<a href="../strategies/IBitmapMatchJudge.html">IBitmapMatchJudge</a> = null):void</code><p>
+         This method adds an AssertComponentMatchBaseline command instance to the test sequence queue. You should add
+         it after you've manipulated your component as desired and called addRefresh(). You can repeat this sequence
+         - manipulate-refresh-assert - multiple times in your test method.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">comp</span>:UIComponent</code> &mdash;               The UIComponent instance whose appearance you are comparing to a saved baseline.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">testID</span>:int</code> &mdash;             Every call to addAssertComponentMatchBaseline() must pass in an integer testID that
+                                   is unique within the testmethod. This is used to name the baseline file that is
+                                   used by the assert.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">timeout</span>:int</code> &mdash;            Optional - Pass in an integer specifying milliseconds if you wish this command to
+                                   allow more or less time to pass before throwing an error. The default is 10 seconds.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">judgmentStrategy</span>:<a href="../strategies/IBitmapMatchJudge.html">IBitmapMatchJudge</a></code> (default = <code>null</code>)<code></code> &mdash;   Optional - If you'd like VFU to use some logic other than its default logic to
+                                   decide whether a test result is close enough to its saved baseline you can write a
+                                   class that implements IBitmapMatchJudge, instanciate it, and pass it in here.
+         </td>
+</tr>
+</table>
+</div>
+<a name="addEventDispatch()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addEventDispatch</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addEventDispatch(target:EventDispatcher, event:Event):void</code><p>
+         This method adds a DispatchEvent command object to the test sequence queue which, when executed
+         calls dispatch() event on the target you specify. We use this to simulate mouse and keyboard actions
+         using MouseEvents and KeyboardEvents and a UIComponent target, but this method could be used for other
+         events with other types of EventDispatcher targets. Let us know what creative uses you come up with!
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">target</span>:EventDispatcher</code> &mdash;   The EventDispatcher instance that you'd like to dispatch the event from.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">event</span>:Event</code> &mdash;    The Event you'd like to dispatch.
+         </td>
+</tr>
+</table>
+</div>
+<a name="addEventListener()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addEventListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addEventListener(target:EventDispatcher, eventType:String, listener:Function):void</code><p>
+         This method should only be used by the TestSequenceCommands that this class manages. If you're
+         writing your own TestSequenceCommands use this any time you want to add an event listener to an
+         object, and this manager will take care of calling removeEventListener() when the test sequence
+         has finished.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">target</span>:EventDispatcher</code> &mdash;      The EventDispatcher that you are adding a listener to
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">eventType</span>:String</code> &mdash;   A string identifying the event type that you want to listen for
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">listener</span>:Function</code> &mdash;    The listener Function instance
+         </td>
+</tr>
+</table>
+</div>
+<a name="addEventOrQuiesceWait()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addEventOrQuiesceWait</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addEventOrQuiesceWait(target:EventDispatcher, eventType:String, timeout:int, quiesceDuration:int):void</code><p>
+         This method adds a WaitForEventOrQuiesce command object to the test sequence queue. As its name implies
+         this command waits for either of:
+         </p><p>    a) The arrival of an event, in either its capture or target phase, or</p>
+         <p>    b) The passage of a period of time without that event happening.</p>
+                  <p>This method is used as one of several steps set up by addRefresh() to create an opportunity for a
+         UIComponent to render fully before its appearance is tested. See the comments in WaitForEventOrQuiesce
+         for details on why its behavior is useful. It's not clear to us whether it will also be useful to the
+         writers of visual tests. If it is, let us know. :)</p>
+                  <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">target</span>:EventDispatcher</code> &mdash;             The EventDispatcher instance that you'd like to listen to for the specified event dispatch.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">eventType</span>:String</code> &mdash;          A string specifying the type of event you'd like to listen for.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">timeout</span>:int</code> &mdash;            Optional - Pass in an integer specifying milliseconds if you wish this command to
+                                   allow more or less time to pass before throwing an error. The default is 10 seconds.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">quiesceDuration</span>:int</code> &mdash;    Optional - The amount of "quiet time" you'd like your test sequence to wait for, in
+                                   milliseconds. The default is 300.
+                  </td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="commands/WaitForEventOrQuiesce.html" target="">com.allurent.flexunit2.vfu.framework.testsequence.commands.WaitForEventOrQuiesce</a>
+</div>
+</div>
+<a name="addEventWait()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addEventWait</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addEventWait(target:EventDispatcher, eventType:String, timeout:int, testFunc:Function = null):void</code><p>
+         This method adds a WaitForEvent command object to the test sequence queue. As its name implies
+         this command waits for the arrival of an event, in either its capture or target phase.
+                  </p><p>Note that in the (very limited) test methods that we've written so far, this method hasn't
+         yet been found to actually be useful. Please let us know if you find uses for it.</p>
+                  <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">target</span>:EventDispatcher</code> &mdash;             The EventDispatcher instance that you'd like to listen to for the specified event dispatch.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">eventType</span>:String</code> &mdash;          A string specifying the type of event you'd like to listen for.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">timeout</span>:int</code> &mdash;            Optional - Pass in an integer specifying milliseconds if you wish this command to
+                                   allow more or less time to pass before throwing an error. The default is 10 seconds.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">testFunc</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="addQuiesceWait()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addQuiesceWait</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addQuiesceWait(timeout:int, quiesceDuration:int):void</code><p>
+         This method adds a WaitForQuiesce command object to the test sequence queue. As its name implies
+         this command waits for the passage of a period of time without an UPDATE_COMPLETE event being
+         received by the component display panel.
+                  </p><p>This method is used as one of several steps set up by addRefresh() to create an opportunity for a
+         UIComponent to render fully before its appearance is tested.</p>
+                  <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">timeout</span>:int</code> &mdash;            Optional - Pass in an integer specifying milliseconds if you wish this command to
+                                   allow more or less time than the default to pass before throwing an error.
+                                   The default is 10 seconds.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">quiesceDuration</span>:int</code> &mdash;    Optional - The amount of "quiet time" you'd like your test sequence to wait for, in
+                                   milliseconds. The default is 300.
+         </td>
+</tr>
+</table>
+</div>
+<a name="addRefresh()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addRefresh</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addRefresh(timeout:int, quiesceDuration:int):void</code><p>
+         This method adds several different command objects to the test sequence queue which, working together, will hopefully
+         give a displayed UI component an adequate opportunity to render fully. Put another way, what we're trying to
+         accomplish here is reliable full rendering. As this project is currently in its 'experimental alpha' stage,
+         it is possible that the approach currently used will need to be tweaked. It appears to work fine, but we invite
+         your feedback.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">timeout</span>:int</code> &mdash;            Optional - Pass in an integer specifying milliseconds if you wish this command to
+                                   allow more or less time to pass before throwing an error. The default is 10 seconds.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">quiesceDuration</span>:int</code> &mdash;    Optional - The amount of "quiet time" you'd like your test sequence to wait for, in
+                                   milliseconds, as part of the refresh process. The default is 300.
+         </td>
+</tr>
+</table>
+</div>
+<a name="addSetProperty()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addSetProperty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addSetProperty(instance:Object, prop:String, val:Object):void</code><p>
+         This method adds a SetProperty command object to the test sequence queue which (surprise!)
+         sets the property you specify to the value that you provide on the instance that you provide.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">instance</span>:Object</code> &mdash;      The instance that you'd like to set a property on.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">prop</span>:String</code> &mdash;          The name of the property.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">val</span>:Object</code> &mdash;           The value that you'd like the property set to.
+         </td>
+</tr>
+</table>
+</div>
+<a name="addSetStyle()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addSetStyle</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addSetStyle(comp:UIComponent, styleName:String, val:Object):void</code><p>
+         Just like addSetProperty() except that we're setting a style on a UIComponent, rather than a
+         property on an Object.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">comp</span>:UIComponent</code> &mdash;          The UIComponent for which you'd like to set a style.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">styleName</span>:String</code> &mdash;     The name of the style that you'd like to set.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">val</span>:Object</code> &mdash;           The value that you'd like the style set to.
+         </td>
+</tr>
+</table>
+</div>
+<a name="addUIComponent()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addUIComponent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addUIComponent(comp:UIComponent):void</code><p>
+         This method should only be used by the TestSequenceCommands that this class manages. If you're
+         writing your own TestSequenceCommands use this any time you want to add a component to the
+         display panel, and this manager will take care of calling removeChild() for the component when
+         the test sequence has finished.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">comp</span>:UIComponent</code> &mdash; The UIComponent that you like added to the display panel.
+         </td>
+</tr>
+</table>
+</div>
+<a name="commandFinished()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">commandFinished</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function commandFinished(command:<a href="commands/TestSequenceCommand.html">TestSequenceCommand</a>, failureError:Error = null):void</code><p>
+         This method is called by the current active command when it's finished.
+         It passes in an instance of itself and, optionally, an Error instance.
+         The Error instance, if any, does two things: a) it signals an end
+         of the test sequence, even if some unexecuted commands remain in the
+         queue, and b) it ends up in addAsyncHandler() where it is thrown. See the
+         note in addAsyncHandler()'s comments for an explanation of why it
+         is important for errors to be thrown there.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">command</span>:<a href="commands/TestSequenceCommand.html">TestSequenceCommand</a></code> &mdash; The currently running TestSequenceCommand which called this method.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">failureError</span>:Error</code> (default = <code>null</code>)<code></code> &mdash; See explanation above
+         </td>
+</tr>
+</table>
+</div>
+<a name="getCurrentCommandClass()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getCurrentCommandClass</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getCurrentCommandClass():String</code><p>
+         Returns the class name of the current command
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="start()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">start</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function start(timeout:int = 0):void</code><p>
+         This method starts the test sequence that you've created using the methods above.
+                  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">timeout</span>:int</code> (default = <code>0</code>)<code></code> &mdash;  Optional - The number of milliseconds you'd like to allow for the entire test sequence,
+                         before an error gets thrown. If you don't pass in a value VFU computes a generous but
+                         reasonable period of time to use for this value.
+         </td>
+</tr>
+</table>
+</div>
+<a name="validateNow()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">validateNow</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function validateNow():void</code><p>
+         Simply calls validateNow() on the display panel
+         </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">Copyright (c) 2006-2007 Allurent Inc. All rights reserved. Generated 10/24/2007 03:44 PM. Build dev-version</center>
+</div>
+</body>
+</html>
+<!--Copyright (c) 2006-2007 Allurent Inc. All rights reserved. Generated 10/24/2007 03:44 PM. Build dev-version-->

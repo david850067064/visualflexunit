@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2007 Allurent, Inc.
+    http://code.google.com/p/visualflexunit/
+    
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<vfuui:VisualView 
+        xmlns:vfuui="com.allurent.flexunit2.vfu.flexui.*"
+        xmlns:mx="http://www.adobe.com/2006/mxml"
+        title="Current bitmap doesn't match baseline bitmap. Create new baseline?">
+        
+    <mx:Script>
+        <![CDATA[
+            import com.allurent.flexunit2.vfu.errors.BitmapNotMatchBaselineError;
+
+            import mx.core.Application;
+            
+            [Bindable]
+            public var error:BitmapNotMatchBaselineError;
+            [Bindable]
+            private var _descriptiveText:String; 
+            
+            public function init():void
+            {
+                _descriptiveText = error.nonMatchingPixelCount + "/" + error.totalPixelCount + " pixels don't match (" + error.percentDifferent + "%)\n";
+                _descriptiveText = _descriptiveText + "Average Color Difference (non-matching pixels): " + error.averageDiffNonMatchingPixels + "\n";
+                _descriptiveText = _descriptiveText + "Average Color Difference (all pixels): "          + error.averageDiffAllPixels + "\n";
+                _descriptiveText = _descriptiveText + "Highest Color Difference: "                       + error.highestAbsoluteColorDiff + "\n";
+                _descriptiveText = _descriptiveText + "Largest Diff Area Dimension: "                    + error.largestDiffAreaDimension;
+            }
+        ]]>
+    </mx:Script>
+    
+    <!-- Buttons -->
+    
+    <mx:VBox styleName="paddedBox">
+        <mx:Button 
+                label="Open Diff Viewer" 
+                click="onOpenDiffViewerButtonClick()" />
+        <mx:Button 
+                label="Bless Current Bitmap As New Baseline" 
+                click="onBlessButtonClick()" 
+                enabled="{Application.application.blessingEnabled}" />
+    </mx:VBox>
+    
+    <!-- Display Baseline & Test Result Images -->
+    
+    <mx:HBox 
+            styleName="paddedBox" 
+            paddingTop="0"
+            width="100%">
+        <mx:HBox 
+                backgroundColor="0xCCCCFF" 
+                styleName="paddedBox"
+                cornerRadius="5"
+                borderStyle="solid"
+                width="100%">
+            <mx:VBox>
+                <mx:Label text="Baseline" fontWeight="bold"/>
+                <mx:VBox >
+                    <mx:Image source="{error.expectedBitmap}"/>
+                </mx:VBox>
+            </mx:VBox>
+            <mx:VBox>
+                <mx:Label text="Current" fontWeight="bold"/>
+                <mx:VBox >
+                    <mx:Image source="{error.actualBitmap}"  />
+                </mx:VBox>
+            </mx:VBox>
+        </mx:HBox>
+    </mx:HBox>
+    
+    <!-- Descriptive Text -->
+    
+    <mx:Text 
+            text="{_descriptiveText}" 
+            fontWeight="bold" />
+    
+    <!-- Baseline Image URL -->
+    
+    <mx:Label 
+            text="Baseline loc:  {error.url}" 
+            fontWeight="bold" />
+    
+    <!-- Stack Trace -->
+    
+    <mx:TextArea 
+            id="vfuBitmapNotMatchBaselineStackTrace" 
+            text="{error.getStackTrace()}"
+            width="100%" 
+            height="100%" 
+            borderStyle="none" 
+            wordWrap="false" />
+</vfuui:VisualView>

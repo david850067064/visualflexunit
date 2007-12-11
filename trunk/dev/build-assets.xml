@@ -1,0 +1,5 @@
+<project name="dev.assets">
+  <import file="arc-flexunit2/build-assets.xml"/>
+  <import file="flexunit/build-assets.xml"/>
+  <import file="vfu/build-assets.xml"/>
+</project>
