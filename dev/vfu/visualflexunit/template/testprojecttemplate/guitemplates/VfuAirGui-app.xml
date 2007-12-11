@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://ns.adobe.com/air/application/1.0.M5" appId="com.allurent.vfu.@project@TestAirGui" version="1.0 Beta">
+    <initialWindow>
+        <content>VfuAirGui.swf</content>
+        <systemChrome>standard</systemChrome>
+        <visible>true</visible>
+    </initialWindow>
+    <name>Visual FlexUnit AIR GUI</name>
+    <title>Visual FlexUnit AIR GUI</title>
+<description></description>
+<copyright></copyright>
+</application>

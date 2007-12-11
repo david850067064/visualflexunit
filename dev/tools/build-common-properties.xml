@@ -1,0 +1,81 @@
+<!--
+    Copyright (c) 2007 Allurent, Inc.
+    http://code.google.com/p/visualflexunit/
+    
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<project name="tools.properties">
+
+    <dirname property="tools.properties.dir" file="${ant.file.tools.properties}" />
+
+    <!-- import user properties first, as the "first one wins" when it comes to ant property definitions -->
+    <property file="${root.dir}/build-user.properties" />
+
+    <!-- derived project properties -->
+    <property name="project.name"               value="${ant.project.name}" />
+    <property name="project.swf"                value="${project.name}.swf" />
+    <property name="project.swc"                value="${project.name}.swc" />
+    <property name="project.flex.application"   value="${project.name}.mxml" />
+
+    <!-- build properties -->
+    <property name="build.dir"                  value="bin" />
+    <property name="build.generated.dir"        value="${build.dir}/generated" />
+    <property name="build.stage.dir"            value="${build.dir}/stage" />
+    <property name="build.dist.dir"             value="${build.dir}/dist" />
+    
+    <!-- the base directory which all assets fall under, see flex-* targets -->
+    <property name="uptodate.dir"               location="${tools.properties.dir}/.." />
+
+    <!-- flex properties - flex.dir should be set in your build-user.properties file -->
+    <property name="flex.frameworks.dir"        value="${flex.dir}/frameworks" />
+    <property name="flex.config"                value="${flex.frameworks.dir}/flex-config.xml" />
+    <property name="flex.dist.lib"              value="${flex.dir}/lib" />
+    <property name="flex.compc.jar"             value="${flex.dist.lib}/compc.jar" />
+    <property name="flex.mxmlc.jar"             value="${flex.dist.lib}/mxmlc.jar" />
+    <property name="flex.mxmlc.options"         value="" />
+    <property name="flex.compc.options"         value="" />
+    <property name="src.flex.dir"               value="src" />
+    <property name="build.compc.dir"            value="${build.dir}/" />
+    <property name="build.mxmlc.dir"            value="${build.dir}/" />
+
+    <!-- as3doc properties -->
+    <property name="as3doc.template.dir"        value="${flex.dir}/asdoc/templates" />
+    <property name="as3doc.jar"                 value="${flex.dir}/lib/asdoc.jar" />
+    <property name="as3doc.xalan.jar"           value="${flex.dir}/asdoc/lib/xalan.jar" />
+    <property name="build.as3doc.dir"           value="${build.dir}/asdoc/" />
+
+    <!-- arc-flexunit2 properties -->
+    <property name="arc-flexunit2.loglevel"          value="info" />
+    <property name="arc-flexunit2.class"             value="FlexUnitAllTests" />
+    <property name="arc-flexunit2.alltests.suite"    value="${arc-flexunit2.class}.suite()" />
+    <property name="arc-flexunit2.reportserver.port" value="50031" />
+    <property name="arc-flexunit2.reportserver.host" value="localhost" />
+    <property name="arc-flexunit2.timeout"           value="150000" />
+    <property name="arc-flexunit2.filters"           value="flexunit2.filters" />
+
+    <!-- javac properties -->
+    <property name="javac.debug"        value="true" />
+    <property name="src.java.dir"       value="java" />
+    <property name="build.javac.dir"    value="${build.dir}/classes" />
+    
+    <!-- misc properties -->
+    <property name="mac.open" value="/usr/bin/open" />
+</project>

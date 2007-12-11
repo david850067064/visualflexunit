@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../../../../print.css" type="text/css" media="print">
+<meta content="TestSequenceCommand,com.allurent.flexunit2.vfu.framework.testsequence.commands.TestSequenceCommand,_manager,dispose,execute,restartQuiesceTimer,restartTimeoutTimer,startQuiesceTimer,startTimeoutTimer" name="keywords">
+<title>com.allurent.flexunit2.vfu.framework.testsequence.commands.TestSequenceCommand</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'TestSequenceCommand - API Documentation';
+				var baseRef = '../../../../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../../../../all-classes.html')" href="../../../../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../../../all-classes.html')" href="../../../../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../../../index-list.html')" href="../../../../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../../../../index.html?com/allurent/flexunit2/vfu/framework/testsequence/commands/TestSequenceCommand.html&amp;com/allurent/flexunit2/vfu/framework/testsequence/commands/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;TestSequenceCommand</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class TestSequenceCommand"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.allurent.flexunit2.vfu.framework.testsequence.commands</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class TestSequenceCommand</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">TestSequenceCommand <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../../../../images/inherit-arrow.gif"> flash.events.EventDispatcher</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../../../IDisposable.html">IDisposable</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../commands/AssertComponentMatchBaseline.html">AssertComponentMatchBaseline</a>, <a href="../commands/DispatchAndWaitForEvent.html">DispatchAndWaitForEvent</a>, <a href="../commands/DispatchEvent.html">DispatchEvent</a>, <a href="../commands/DoAction.html">DoAction</a>, <a href="../commands/SetProperty.html">SetProperty</a>, <a href="../commands/SetStyle.html">SetStyle</a>, <a href="../commands/ValidateNow.html">ValidateNow</a>, <a href="../commands/WaitForEvent.html">WaitForEvent</a>, <a href="../commands/WaitForEventOrQuiesce.html">WaitForEventOrQuiesce</a>, <a href="../commands/WaitForQuiesce.html">WaitForQuiesce</a></td>
+</tr>
+</table>
+<p></p>
+     This class serves as superclass for all commands used by TestSequenceManager
+     and can be subclassed if you'd like to add functionality to Visual FlexUnit.
+     If you decide to go this route, we suggest that you:
+        - Study both this class and existing subclasses (i.e. the contents of
+          com.allurent.flexunit2.vfu.framework.testsequence.commands)
+        - Study the Public Methods Used By Test Writers section of
+          com.allurent.flexunit2.vfu.framework.testsequence.TestSequenceManager.
+          You'll want to add one or more methods here.
+          Important: If you want errors to be reported in FlexUnit's results panel,
+     rather than being displayed in Flash Player's uncaught error dialogue,
+     follow this procedure:
+        - Create an instance of AssertionFailedError or some subclass of same
+        - End command execution with code like this:
+                 _manager.commandFinished(this, myError);
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a><a name="protectedPropertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Properties</div>
+<table id="summaryTableProtectedProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_manager">_manager</a> : <a href="../../testsequence/TestSequenceManager.html">TestSequenceManager</a>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">TestSequenceCommand</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#TestSequenceCommand()">TestSequenceCommand</a>(manager:<a href="../TestSequenceManager.html">TestSequenceManager</a>, timeout:int = 0, quiesceDuration:int = 0)</div>
+<div class="summaryTableDescription">
+         </div>
+</td><td class="summaryTableOwnerCol">TestSequenceCommand</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#dispose()">dispose</a>():void</div>
+<div class="summaryTableDescription">
+         Subclasses that extend this method should do any of the following that
+         are applicable:
+                    - If your command class's vars reference any non-primitive objects, the
+             vars should be set to null.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceCommand</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#execute()">execute</a>():void</div>
+<div class="summaryTableDescription">
+         Subclasses should implement the event.</div>
+</td><td class="summaryTableOwnerCol">TestSequenceCommand</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#restartQuiesceTimer()">restartQuiesceTimer</a>():void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">TestSequenceCommand</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#restartTimeoutTimer()">restartTimeoutTimer</a>():void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">TestSequenceCommand</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#startQuiesceTimer()">startQuiesceTimer</a>(listener:Function):void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">TestSequenceCommand</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#startTimeoutTimer()">startTimeoutTimer</a>():void</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">TestSequenceCommand</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="_manager"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_manager</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _manager:<a href="../../testsequence/TestSequenceManager.html">TestSequenceManager</a></code>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="TestSequenceCommand()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TestSequenceCommand</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function TestSequenceCommand(manager:<a href="../TestSequenceManager.html">TestSequenceManager</a>, timeout:int = 0, quiesceDuration:int = 0)</code><p>
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">manager</span>:<a href="../TestSequenceManager.html">TestSequenceManager</a></code> &mdash;          The TestSequenceManager that manages TestSequenceCommands.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">timeout</span>:int</code> (default = <code>0</code>)<code></code> &mdash;          The period in milliseconds after which the command will throw an error,
+                                 if not completed. This only needs to be passed in if your command launches
+                                 asynchronous operations.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">quiesceDuration</span>:int</code> (default = <code>0</code>)<code></code> &mdash;  Some subclasses of this class wait for a period of quiet. If so, the required milliseconds of quiet are passed in here.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="dispose()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">dispose</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function dispose():void</code><p>
+         Subclasses that extend this method should do any of the following that
+         are applicable:
+                    - If your command class's vars reference any non-primitive objects, the
+             vars should be set to null.
+           - If this will remove the last remaining reference to a complex object that
+             also needs its dispose() (or equivalent) method called, you should do
+             this before nulling the var.
+           - One thing that you may or may not need to do is to unregister your event
+             listeners. You'll note that the code in this method takes care of shutting
+             down this class's internal timers. Also, any event listeners that you
+             initialized using TestSequenceManager.addEventListener()
+             ("_manager.addEventListener(..)") are automatically unregistered by the
+             manager. That said, if your subclass registers event listeners through
+             any other means, unregister them here.
+           - This isn't an exhaustive list. For more details on dispose() methods see
+             Moock's Essential ActionScript 3.0, chapter 14.
+         </p></div>
+<a name="execute()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">execute</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function execute():void</code><p>
+         Subclasses should implement the event. This is where you do what your command does
+         (for synchronous actions) and/or put your command's processes in motion (for
+         asynchronous actions)
+         </p></div>
+<a name="restartQuiesceTimer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">restartQuiesceTimer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function restartQuiesceTimer():void</code>
+</div>
+<a name="restartTimeoutTimer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">restartTimeoutTimer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function restartTimeoutTimer():void</code>
+</div>
+<a name="startQuiesceTimer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">startQuiesceTimer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function startQuiesceTimer(listener:Function):void</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">listener</span>:Function</code></td>
+</tr>
+</table>
+</div>
+<a name="startTimeoutTimer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">startTimeoutTimer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function startTimeoutTimer():void</code>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">Copyright (c) 2006-2007 Allurent Inc. All rights reserved. Generated 10/24/2007 03:44 PM. Build dev-version</center>
+</div>
+</body>
+</html>
+<!--Copyright (c) 2006-2007 Allurent Inc. All rights reserved. Generated 10/24/2007 03:44 PM. Build dev-version-->
