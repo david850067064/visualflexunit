@@ -1,8 +1,0 @@
-<!-- 
-	build-imports.xml: this file pulls in any definitions needed
-    for this directory and its descendants. 
--->
-<project name="vfu.imports">
-    <import file="../build-imports.xml" />
-</project>
-

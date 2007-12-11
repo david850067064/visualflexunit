@@ -1,4 +1,0 @@
-<project name="vfuexample.assets">
-  <property name="vfuexample.root.dir" location="${root.dir}/vfu/vfuexample"/>
-  <property name="vfuexample.swc" location="${vfuexample.root.dir}/${build.dir}/vfuexample.swc"/>
-</project>

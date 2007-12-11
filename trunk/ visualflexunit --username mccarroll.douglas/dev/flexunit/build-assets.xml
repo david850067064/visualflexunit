@@ -1,4 +1,0 @@
-<project name="flexunit.assets">
-    <dirname property="flexunit.assets.dir" file="${ant.file.flexunit.assets}"/>
-    <property name="flexunit.swc" location="${flexunit.assets.dir}/bin/flexunit.swc"/>
-</project>

@@ -1,4 +1,0 @@
-<project name="vfu.assets">
-  <import file="vfuexample/build-assets.xml"/>
-  <import file="visualflexunit/build-assets.xml"/>
-</project>
