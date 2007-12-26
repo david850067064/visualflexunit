@@ -23,14 +23,14 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>[source path] air</name>
-			<type>2</type>
-			<locationURI>DEV_ROOT/vfu/visualflexunit/src/air</locationURI>
-		</link>
-		<link>
 			<name>[source path] flexunit-src</name>
 			<type>2</type>
 			<locationURI>DEV_ROOT/flexunit/src</locationURI>
+		</link>
+		<link>
+			<name>[source path] flex</name>
+			<type>2</type>
+			<locationURI>DEV_ROOT/vfu/visualflexunit/src/flex</locationURI>
 		</link>
 		<link>
 			<name>[source path] vfuexample-src</name>
@@ -38,9 +38,9 @@
 			<locationURI>DEV_ROOT/vfu/vfuexample/src</locationURI>
 		</link>
 		<link>
-			<name>[source path] flex</name>
+			<name>[source path] air</name>
 			<type>2</type>
-			<locationURI>DEV_ROOT/vfu/visualflexunit/src/flex</locationURI>
+			<locationURI>DEV_ROOT/vfu/visualflexunit/src/air</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
