@@ -37,7 +37,7 @@
             
             public function onCreationComplete():void
             {
-				baselineFolderPath = stripFileAndLastFolderFromPath(this.url) + "//src/baseline";
+				baselineFolderPath = stripFileAndLastFolderFromPath(this.url) + "/src/baseline";
 				ARCTestRunner.run( @arc-flexunit2.alltests.suite@, "@arc-flexunit2.reportserver.host@", @arc-flexunit2.reportserver.port@);
             } 
             

@@ -2,7 +2,7 @@
 <!--
     Copyright (c) 2007 Allurent, Inc.
     http://code.google.com/p/visualflexunit/
-    
+
     Permission is hereby granted, free of charge, to any person obtaining
     a copy of this software and associated documentation files (the
     "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
     distribute, sublicense, and/or sell copies of the Software, and to
     permit persons to whom the Software is furnished to do so, subject to
     the following conditions:
-    
+
     The above copyright notice and this permission notice shall be
     included in all copies or substantial portions of the Software.
-    
+
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
     MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -23,27 +23,27 @@
     WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<mx:Application 
-        xmlns:mx="http://www.adobe.com/2006/mxml" 
+<mx:Application
+        xmlns:mx="http://www.adobe.com/2006/mxml"
         xmlns:vfuui="com.allurent.flexunit2.vfu.flexui.*"
         creationComplete="onCreationComplete()"
         layout="absolute">
 
     <mx:Style source="skinning/styles.css" />
-            
+
     <mx:Script>
         <![CDATA[
-            import mx.core.Application; 
+            import mx.core.Application;
 
             import com.allurent.flexunit2.vfu.utils.io.StubFileWriter;
-            
+
             public var baselineFolderPath:String;
 			[Bindable]
             public var blessingEnabled:Boolean;
 
             private function onCreationComplete():void
             {
-                baselineFolderPath = stripFileAndLastFolderFromPath(this.url) + "//src/baseline";
+                baselineFolderPath = stripFileAndLastFolderFromPath(this.url) + "/src/baseline";
                 blessingEnabled = false;
                 testRunner.test = VfuGuiFlexUnitAllTests.suite();
                 testRunner.fileWriter = new StubFileWriter();
