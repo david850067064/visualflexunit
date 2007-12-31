@@ -32,7 +32,7 @@ package com.allurent.flexunit2.vfu.framework
     /**
      * Subclass this class instead of TestCase when you write visual tests.
      * Detailed instructions on writing visual tests can be found at Visual
-     * FlexUnit's website at TODO:###############################
+     * FlexUnit's website at http://code.google.com/p/visualflexunit/wiki/VisualFlexUnit
      */
     public class VfuTestCase extends TestCase
     {
