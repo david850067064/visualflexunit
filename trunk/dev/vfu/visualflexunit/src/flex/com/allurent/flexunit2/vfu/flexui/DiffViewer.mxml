@@ -235,10 +235,6 @@
                 </mx:ViewStack>
             </mx:HBox>
         </mx:VBox>
-            <!--
-            o.color1   
-            o.color2 
-             -->
         <mx:VBox label="View Pixel Data">
             <mx:DataGrid 
                     dataProvider="{error.nonMatchingPixelData}"
