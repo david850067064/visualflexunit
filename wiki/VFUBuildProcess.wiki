@@ -32,9 +32,9 @@ First of all, a few quick notes:
 
 When running in automated mode the build process first builds a test SWF by running the `create-test-suite` target. This target: 
  * Auto-generates a `FlexUnitAllTest.as` file. The code in this file adds all tests in your source code to a test suite.
- * Makes a copy of `/dev/vfu/visualflexunit/template/RunTests.mxml` and renaming it with your project's name. This file uses `FlexUnitAllTests.as`.
+ * Makes a copy of `/dev/vfu/visualflexunit/template/RunTests.mxml` and renames it with your project's name. This file uses `FlexUnitAllTests.as`.
  * Compiles the .mxml file into a SWF.
- * This is a simplified explanation - see target's code for details.
+ * This is a simplified explanation - see the target's code for details.
 
 The `test-flexunit2` target runs the tests. Here's how that works:
  * The target first starts a Java server (`com.allurent.flexunit2.framework.UnitTestReportServer`), waits 2 seconds, then starts Flash Player, passing in the path to the SWF that the `create-test-suite` target created.
