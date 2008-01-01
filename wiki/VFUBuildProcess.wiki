@@ -40,4 +40,3 @@ The `test-flexunit2` target runs the tests. Here's how that works:
  * The target first starts a Java server (`com.allurent.flexunit2.framework.UnitTestReportServer`), waits 2 seconds, then starts Flash Player, passing in the path to the SWF that the `create-test-suite` target created.
  * The SWF runs all the tests and reports to the server. You can look at `ARCTestRunner.as` and `ARCTestPrinter.as` in `dev/arc-flexunit2/src/flex/com/allurent/flexunit2/framework/` if you'd like to see the details of this process. `ARCTestPrinter.onAllTestsEnd()` would be a good starting point.
  * The Java server outputs results into the `server.output` Ant property before it closes, and Ant prints the info to the console using `echo`.
- * What could be simpler?  :)
