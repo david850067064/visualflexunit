@@ -203,7 +203,8 @@ Assumptions:
 
 We make the following assumptions. If these are correct you should be able to bootstrap projects by following the directions below. If you have sufficient Flex and Ant knowledge you can work around these, e.g. compiling your AIR GUI test app from the command line, but we don't cover such scenarios here.
  * You have Ant 1.6.5 or newer installed.
- * You have !FlexBuilder 3.0 installed and are at least somewhat familiar with it.
+ * You have !FlexBuilder 3.0 (beta 3 or later) installed and are at least somewhat familiar with it.
+ * You have the AIR runtime (beta 3 or later) installed.
  * As you will be creating a `dev/[parent_project]/[app_project]Test/` test project folder by running the Ant bootstrap process specified below, we assume that no such folder currently exists, or that you'll be deleting or renaming it and starting over.
 
 Steps:
@@ -406,6 +407,7 @@ We assume that you have done the following:
  * You've followed the steps outlined in Step 4.
  * You've run your test project in AIR GUI mode and created your baselines as explained above.
  * You've compiled `[app_project]` and all libraries upon which it depends.
+ * You've set Flash Player's [http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html global security settings] to allow access to files in [app_project] or one of it's parent folders.
 
 ====  Automated Mode In Flash Player ====
 
