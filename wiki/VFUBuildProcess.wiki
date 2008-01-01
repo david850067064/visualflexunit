@@ -21,4 +21,23 @@ While this will hopefully make VFU's build process easier to absorb, we realize 
 
 We've also added some VFU specific targets to `/dev/tools/build-common-targets.xml`. Hopefully these will find their way into Antennae at some point.
 
+== arc-flexunit2 ==
 
+We've received some inquiries on what 'arc-flexunit2' is and what it does. Hopefully this section will shed some light and point you in the right direction if you'd like to look into this code further.
+
+First of all, a few quick notes:
+ * The `dev/arc-flexunit2` code is part of [http://code.google.com/p/antennae/ Antennae].
+ * Starting with version 0.1.1 our download file includes all source code for arc-flexunit2 (both AS and Java). Obviously, if you *really* want to know what this code does, you can dig into the source code. 
+ * We’ll be mentioning various Ant targets in these notes. You may want to open `/dev/tools/build-common-targets.xml` ([http://visualflexunit.googlecode.com/svn/trunk/dev/tools/build-common-targets.xml here]) so that you can refer to them.
+
+When running in automated mode the build process first builds a test SWF by running the `create-test-suite` target. This target: 
+ * Auto-generates a `FlexUnitAllTest.as` file. The code in this file adds all tests in your source code to a test suite.
+ * Makes a copy of `/dev/vfu/visualflexunit/template/RunTests.mxml` and renaming it with your project's name. This file uses `FlexUnitAllTests.as`.
+ * Compiles the .mxml file into a SWF.
+ * This is a simplified explanation - see target's code for details.
+
+The `test-flexunit2` target runs the tests. Here's how that works:
+ * The target first starts a Java server (`com.allurent.flexunit2.framework.UnitTestReportServer`), waits 2 seconds, then starts Flash Player, passing in the path to the SWF that the `create-test-suite` target created.
+ * The SWF runs all the tests and reports to the server. You can look at `ARCTestRunner.as` and `ARCTestPrinter.as` in `dev/arc-flexunit2/src/flex/com/allurent/flexunit2/framework/` if you'd like to see the details of this process. `ARCTestPrinter.onAllTestsEnd()` would be a good starting point.
+ * The Java server outputs results into the `server.output` Ant property before it closes, and Ant prints the info to the console using `echo`.
+ * What could be simpler?  :)
