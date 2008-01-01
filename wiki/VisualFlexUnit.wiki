@@ -407,7 +407,7 @@ We assume that you have done the following:
  * You've followed the steps outlined in Step 4.
  * You've run your test project in AIR GUI mode and created your baselines as explained above.
  * You've compiled `[app_project]` and all libraries upon which it depends.
- * You've set Flash Player's [http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html global security settings] to 'always trust' files in [app_project] or one of it's parent folders.
+ * You've set Flash Player's [http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html global security settings] to 'always trust' files in `[app_project]` or one of it's parent folders.
 
 ====  Automated Mode In Flash Player ====
 
